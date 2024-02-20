@@ -1,2 +1,2 @@
 def func():
-    pass
+    print("Void")
