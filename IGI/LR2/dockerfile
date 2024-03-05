@@ -1,0 +1,12 @@
+FROM python:latest
+
+WORKDIR /usr/src/app
+COPY geometric_lib/circle.py ./
+COPY geometric_lib/square.py ./
+
+ENV func=area
+ENV parametr=1
+ENV script=square
+
+CMD python -c "import ${script}; print(${script}.${func}(${parametr}))" 
+
