@@ -4,13 +4,30 @@ services:
     build: my-proxy
     ports:
       - "8080:80"
+    networks:
+      - mynetwork
+    
   my-frontend:
     build: my-frontend
+    networks:
+      - mynetwork
   my-backend:
     build: my-backend
     environment:
       - ConnectionStrings__Default
+    networks:
+      - mynetwork
   my-database:
     build: my-database
     environment:
       - MYSQL_ROOT_PASSWORD
+    networks:
+      - mynetwork
+    volumes:
+      - mydatabase:/var/lib/mysql
+
+networks:
+  mynetwork:
+
+volumes:
+  mydatabase:
