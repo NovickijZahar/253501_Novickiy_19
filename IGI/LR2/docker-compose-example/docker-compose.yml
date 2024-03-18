@@ -1,23 +1,26 @@
 version: '3.9'
 services:
   my-proxy:
+    image: novickiyzahar/my-proxy
     build: my-proxy
     ports:
       - "8080:80"
     networks:
       - mynetwork
-    
   my-frontend:
+    image: novickiyzahar/my-frontend
     build: my-frontend
     networks:
       - mynetwork
   my-backend:
+    image: novickiyzahar/my-backend
     build: my-backend
     environment:
       - ConnectionStrings__Default
     networks:
       - mynetwork
   my-database:
+    image: novickiyzahar/my-database
     build: my-database
     environment:
       - MYSQL_ROOT_PASSWORD
