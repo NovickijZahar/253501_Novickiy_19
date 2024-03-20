@@ -12,6 +12,8 @@ services:
     build: my-frontend
     networks:
       - mynetwork
+    depends_on:
+      - my-backend
   my-backend:
     image: novickiyzahar/my-backend
     build: my-backend
@@ -19,6 +21,8 @@ services:
       - ConnectionStrings__Default
     networks:
       - mynetwork
+    depends_on:
+      - my-database
   my-database:
     image: novickiyzahar/my-database
     build: my-database
