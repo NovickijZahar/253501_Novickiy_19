@@ -17,4 +17,5 @@ def repetition(line: str) -> dict:
 
 def sort_alphabet_order(line: str) -> str:
     '''Words after commas in alphabetical order'''
-    return sorted(map(lambda word: word.split(maxsplit=1)[0], line.split(',')[1:]), key=lambda word: word.lower())
+    return sorted(map(lambda word: word.split(maxsplit=1)[0], line.split(',')[1:]), 
+                  key=lambda word: word.lower())

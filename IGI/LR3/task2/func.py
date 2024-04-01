@@ -1,16 +1,12 @@
 from decorator import repeat, info
+from input import generator_input, simple_input
 
 @repeat
 @info
 def product_of_last_digits() -> int:
+    '''Return the product of last digits of sequence'''
     res = 1
-    while True:
-        try:
-            a = int(input())
-        except:
-            print('Error. Enter a number')
-            continue
-        if a == 0:
-            break
-        res *= a % 10
+    for n in generator_input():
+        res *= n % 10 
     return res
+

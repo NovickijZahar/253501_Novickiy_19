@@ -9,3 +9,4 @@ def sum_between_first_and_second_negative_numbers(arr: list) -> float:
         return sum(arr[first+1:second])
     except:
         raise Exception('There is no two negative elements')
+    

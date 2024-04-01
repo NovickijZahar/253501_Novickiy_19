@@ -1,6 +1,5 @@
 from math import pi, factorial, pow, acos
 
-
 def tailor_func(x: float, n: int) -> float:
     '''
     Сalculate the value of the arccos via Taylor series
@@ -26,3 +25,4 @@ def calculate(x: float, eps: float) -> tuple[float, int]:
         if abs(tailor_func(x, n) - math_func(x)) <= eps:
             return tailor_func(x, n), n
     return tailor_func(x, 500), 500
+

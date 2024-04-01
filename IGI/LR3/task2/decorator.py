@@ -1,7 +1,7 @@
 def info(func):
     def wrapper():
         print('This program calculates the product of last digits of sequence')
-        print('Enter numbers separated by new line')
+        print('Enter integers separated by new line')
         print('To stop input enter 0')
         res = func()
         print(f'Result = {res}')
