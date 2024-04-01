@@ -1,4 +1,4 @@
-from func import calculate, math_func
+from task4.func import calculate, math_func
 from check import input_float_in_range
 
 if __name__ == "__main__":

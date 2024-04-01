@@ -1,5 +1,8 @@
 def input_float_in_range(left: float, 
                          right: float, info="") -> float:
+    '''
+    Check if the float value is in a given range 
+    '''
     while True:
         try:
             number = input(info)
