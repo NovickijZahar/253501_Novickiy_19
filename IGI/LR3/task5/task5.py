@@ -2,7 +2,6 @@ from check import check_input
 from func import index_of_max_value, sum_between_first_and_second_negative_numbers
 from input import simple_input, generator_input
 
-
 if __name__ == '__main__':
      print('This program finds the index of max element in list and' +
            'calculates the sum between first and second negative elements of the list')
