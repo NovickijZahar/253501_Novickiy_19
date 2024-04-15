@@ -1,4 +1,4 @@
-from student import students, average_date
+from student import students, Student
 import csv
 
 def write_in_csv(filename):
@@ -8,7 +8,7 @@ def write_in_csv(filename):
         writer.writerow(['Id', 'Name', 'Surname', 'Date of birth'])
         for name, value in students.items():
             writer.writerow([name, *value.convert()])
-        writer.writerow(['', '', 'Average date of birth', average_date(students)])
+        writer.writerow(['', '', 'Average date of birth', Student.average_date(students)])
 
 def read_from_csv(filename):
     '''read from csv file'''

@@ -5,17 +5,24 @@ class Student:
         self.name = name
         self.surname = surname
         self.date_of_birth = date_of_birth
+
     def convert(self) -> list:
         return [self.name, self.surname, self.date_of_birth]
         
-
-def average_date(students: dict[str, Student]) -> date:
-    res = datetime.fromtimestamp(sum(map(lambda x: datetime.combine(x.date_of_birth, datetime.min.time()).timestamp(), 
-                                         students.values())) / len(students))
-    if res.hour >= 12:
-        return res.date() + timedelta(days=1)
-    return res.date()
+    @staticmethod
+    def average_date(students) -> date:
+        res = datetime.fromtimestamp(sum(map(lambda x: 
+                                            datetime.combine(x.date_of_birth, datetime.min.time()).timestamp(), 
+                                            students.values())) / len(students))
+        if res.hour >= 12:
+            return res.date() + timedelta(days=1)
+        return res.date()
     
+    @staticmethod
+    def get_info(students, unuqie_id):
+        return students.get(unuqie_id, None).convert()
+    
+
 students = {
     '234564': Student('Alexander', 'Ivanov', date(2013, 2, 3)),
     '987654': Student('Olivia', 'Smith', date(2012, 5, 10)),

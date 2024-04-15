@@ -101,7 +101,8 @@ class Func:
             output.write(f'Average sentence length: {Func.average_sentence_length(text):0.2f}\n')
             output.write(f'Average word length: {Func.average_word_length(text):0.2f}\n')
             output.write(f'Number of correct smileys: {Func.count_smiley(text)}\n')
-            output.write(f'Number of uppercase letters: {sum(map(lambda x: Func.count_upper_case(x), Func.get_all_sentences(text)))}\n')
+            output.write(f'Number of uppercase letters: {sum(map(lambda x: Func.count_upper_case(x), 
+                                                                 Func.get_all_sentences(text)))}\n')
             output.write('\nAll sentences:\n')
             output.write('\n'.join(Func.get_all_sentences(text)))
             output.write('\n\nAll sentences with spaces, numbers and punctuation marks:\n')
@@ -110,8 +111,9 @@ class Func:
             output.write(f'\n\nFirst words in sentences with letter z:\n')
             for line in Func.get_all_sentences(text):
                 if Func.get_first_word_with_z(line) != None:
-                    output.write(f'word = {Func.get_first_word_with_z(line)[0]}, position = {Func.get_first_word_with_z(line)[1]}\n')
-        with ZipFile('igi/lr4/task2/zipfile.zip', 'a') as myzip:
+                    output.write(f'word = {Func.get_first_word_with_z(line)[0]}, position = 
+                                 {Func.get_first_word_with_z(line)[1]}\n')
+        with ZipFile('igi/lr4/task2/zipfile.zip', 'w') as myzip:
             myzip.write('igi/lr4/task2/output.txt')
 
     @staticmethod
