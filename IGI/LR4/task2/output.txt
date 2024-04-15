@@ -1,0 +1,28 @@
+Number of sentences: 9
+Numer of declarative sentences: 4
+Number of interogative sentences: 2
+Number of exclamatory sentences: 2
+Average sentence length: 11.22
+Average word length: 4.72
+Number of correct smileys: 2
+Number of uppercase letters: 9
+
+All sentences:
+What an incredible day it is today)!
+The sun is shining brightly like 02/01/1599:], and the sky is a vibrant shade of blue.
+Have you ever seen such a beautiful sight?
+The birds are chirping happily, filling the air with their melodious songs.
+How can anyone resist the allure of nature's symphony?
+It's a perfect time to go outdoors and enjoy the wonders of the world.
+Let's embrace the breeze and feel the mesmerizing zephyr caress our faces.
+So, grab your friends and let's make unforgettable memories on this splendid 15/04/1903 :-))!
+Let's make this day extraordinary with adventure and zeal!
+
+All sentences with spaces, numbers and punctuation marks:
+The sun is shining brightly like 02/01/1599:], and the sky is a vibrant shade of blue.	data is correct = False
+So, grab your friends and let's make unforgettable memories on this splendid 15/04/1903 :-))!	data is correct = True
+
+
+First words in sentences with letter z:
+word = breeze, position = 4
+word = zeal, position = 9
