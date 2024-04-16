@@ -20,7 +20,9 @@ class Student:
     
     @staticmethod
     def get_info(students, unuqie_id):
-        return students.get(unuqie_id, None).convert()
+        if unuqie_id in students:
+            return students[unuqie_id].convert()
+        return None
     
 
 students = {

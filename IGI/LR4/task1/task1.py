@@ -8,5 +8,6 @@ if __name__ == '__main__':
     write_in_csv(filename1)
     write_in_pickle(filename2)
     print(Student.get_info(students, input('Enter unique id of student: ')))
-    # print(read_from_csv(filename1))
-    # print(read_from_pickle(filename2))
+    #print(read_from_csv(filename1))
+    #print(read_from_pickle(filename2))
+    
