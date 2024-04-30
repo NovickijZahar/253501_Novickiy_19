@@ -10,4 +10,3 @@ if __name__ == '__main__':
     print(Student.get_info(students, input('Enter unique id of student: ')))
     #print(read_from_csv(filename1))
     #print(read_from_pickle(filename2))
-    

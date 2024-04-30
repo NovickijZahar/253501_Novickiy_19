@@ -61,7 +61,7 @@ class Func:
 
     @staticmethod
     def is_correct_date(line):
-        '''check does line have the correct date'''
+        '''check does line have the correct date 1.1.1600-12.12.9999'''
         regex = r'(?:[1-9]|0[1-9]|1[0-9]|2[0-9]|3[01])\/(?:[1-9]|1[0-2]|0[1-9])\/(?:[2-9]\d\d\d|1[6-9]\d\d)'
         if re.search(regex, line):
             return True
@@ -118,4 +118,4 @@ class Func:
     def get_info_from_archive():
         with ZipFile('igi/lr4/task2/zipfile.zip', 'r') as myzip:
             content = myzip.read('igi/lr4/task2/output.txt').decode('utf-8')
-            print(content)
+            print(content, myzip.infolist())

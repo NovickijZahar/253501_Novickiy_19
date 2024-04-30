@@ -24,8 +24,8 @@ class Trapezoid(AbstractFigure):
         return self.midline * self.heigt
     
     def __str__(self) -> str:
-        return f'Trapezoid(height = {self.heigt}, lower base = {self.lower_base}, upper base = {self.upper_base}, '\
-                f'midline = {self.midline}, square = {self.calculate_square()}, color = {self.color.value})'
+        return f'Trapezoid(height = {self.heigt}, lower base = {self.lower_base}, upper base = {self.upper_base},\n'\
+                f'midline = {self.midline}, square = {self.calculate_square():0.2f}, color = {self.color.value})'
     
     def draw_figure(self):
         if self.lower_base >= self.upper_base:
@@ -45,5 +45,6 @@ class Trapezoid(AbstractFigure):
         else:
             ax.set_xlim(-1, self.upper_base + 1)
         ax.set_ylim(-1, self.heigt + 1)
+        plt.title(self)
         plt.savefig('igi/lr4/task4/trapezoid.png')
         plt.show()

@@ -14,7 +14,7 @@ class Circle(AbstractFigure):
         return pi * self.radius * self.radius
     
     def __str__(self) -> str:
-        return f'Circle(radius = {self.radius}, color = {self.color})'
+        return f'Circle(radius = {self.radius}, square = {self.calculate_square():0.2f}, color = {self.color.value})'
     
     def draw_figure(self):
         figure = patches.Circle(xy=(self.radius, self.radius), radius=self.radius, facecolor=self.color.value)
@@ -22,5 +22,6 @@ class Circle(AbstractFigure):
         ax.add_patch(figure)
         ax.set_xlim(-1, 2 * self.radius + 1)
         ax.set_ylim(-1, 2 * self.radius + 1)
+        plt.title(self)
         plt.savefig('igi/lr4/task4/circle.png')
         plt.show()

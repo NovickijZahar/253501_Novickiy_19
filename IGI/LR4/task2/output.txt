@@ -9,7 +9,7 @@ Number of uppercase letters: 9
 
 All sentences:
 What an incredible day it is today)!
-The sun is shining brightly like 02/01/1599:], and the sky is a vibrant shade of blue.
+The sun is shining brightly like 02-01/1600:], and the sky is a vibrant shade of blue.
 Have you ever seen such a beautiful sight?
 The birds are chirping happily, filling the air with their melodious songs.
 How can anyone resist the allure of nature's symphony?
@@ -19,7 +19,7 @@ So, grab your friends and let's make unforgettable memories on this splendid 15/
 Let's make this day extraordinary with adventure and zeal!
 
 All sentences with spaces, numbers and punctuation marks:
-The sun is shining brightly like 02/01/1599:], and the sky is a vibrant shade of blue.	data is correct = False
+The sun is shining brightly like 02-01/1600:], and the sky is a vibrant shade of blue.	data is correct = False
 So, grab your friends and let's make unforgettable memories on this splendid 15/04/1903 :-))!	data is correct = True
 
 
