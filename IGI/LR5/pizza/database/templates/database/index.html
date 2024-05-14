@@ -1,0 +1,28 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    База данных
+{% endblock %}
+
+{% block body %}
+    <h1>Ассортимент</h1>
+{% endblock %}
+{% block info %}
+    {% if pizzas %}
+        {% for piz in pizzas %}
+            <div>
+                <h3>{{piz.name}}</h3>
+                {{piz.description}}<br>
+                {{piz.price}}<br>
+                {% for ing in piz.ingredients.all %}
+                    {{ing.name}}
+                {% endfor %}
+                <br>
+                <a href="{% url 'pizza_detail' piz.id %}">Подробнее</a><br>
+                <hr>
+            </div>
+        {% endfor %}
+    {% else %}
+            <h3>Нет пицц</h3>
+    {% endif %}
+{% endblock %}

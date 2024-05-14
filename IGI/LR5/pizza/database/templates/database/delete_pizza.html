@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Удалить пиццу
+{% endblock %}
+
+{% block body %}
+    <h1>Удаление пиццы</h1>
+{% endblock %}
+
+{% block info %}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+{% endblock %}

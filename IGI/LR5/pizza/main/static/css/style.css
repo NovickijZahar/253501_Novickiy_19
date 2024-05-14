@@ -1,0 +1,72 @@
+.navbar {
+    background-color:blanchedalmond; /* Цвет фона панели */
+    position: fixed; /* Фиксированное позиционирование */
+    top: 0; /* Расположение вверху экрана */
+    left: 0;
+    width: 100%; /* Ширина панели на всю ширину экрана */
+    z-index: 100; /* Высокий z-index для отображения панели поверх остального содержимого */
+}
+
+.navbar-list {
+    list-style-type: none; /* Убираем маркеры списка */
+    margin: 0; /* Убираем отступы */
+    padding: 0;
+    align-items: center;
+    font-size: large;
+    display: flex; /* Используем flexbox для автоматического переноса элементов */
+    flex-wrap: wrap; /* Разрешаем перенос элементов на следующую строку */
+}
+
+.navbar-item {
+    display: inline-block; /* Отображение в одну строку */
+    margin-right: 10px; /* Отступ между элементами */
+    white-space: nowrap; /* Запрещаем перенос текста на следующую строку */
+}
+
+.navbar-item a {
+    color: #333; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.navbar-item a:hover {
+    text-decoration: underline; /* Убираем подчеркивание при наведении */
+}
+
+.navbar-item-right {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.navbar-item-right a {
+    margin-left: 10px; /* Увеличение отступа между элементами справа */
+}
+
+.logout {
+    display: inline-block;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+}
+
+.logout:hover {
+    background-color: red;
+}
+
+.logout:active {
+    background-color: red;
+}
+
+body {
+    margin-top: 70px;
+}
+
+img{
+    margin: 0;
+    display: block;
+}

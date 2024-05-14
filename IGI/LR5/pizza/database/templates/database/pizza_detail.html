@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    {{pizza.name}}
+{% endblock %}
+
+{% block body %}
+    <h1>{{pizza.name}}</h1>
+    {% endblock %}
+    
+{% block info %}
+    Опичание: {{pizza.description}}<br>
+    Цена: {{pizza.price}}<br>
+    Ингредиенты: 
+    {% for ing in pizza.ingredients.all %}
+        {{ing.name}}
+    {% endfor %}<hr>
+    {% if user.is_superuser %}
+    <a href="{% url 'pizza_delete' pizza.id %}">Удалить</a><br>
+    {% endif %}
+    {% if user.is_superuser %}
+    <a href="{% url 'pizza_edit' pizza.id %}">Изменить</a>
+    {% endif %}
+{% endblock %}

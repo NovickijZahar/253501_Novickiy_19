@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-list">
+            <li class="navbar-item"><a href="{% url 'home' %}">
+                <img src="{% static 'images/logo.jpg' %}" width="60px" height="60px"></a></li>
+            <li class="navbar-item"><a href="{% url 'about' %}">About</a></li>
+            <li class="navbar-item"><a href="{% url 'database_home' %}" class="abc">Pizzas</a></li>
+            {% if user.is_superuser %}
+                <li class="navbar-item"><a href="{% url 'create_ingredient' %}">Add ingredient</a></li>
+            {% endif %}
+            {% if user.is_superuser %}
+                <li class="navbar-item"><a href="{% url 'create_pizza' %}">Add pizza</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li class="navbar-item-right navbar-item">
+                    <a href="#">{{user.get_username}}</a>
+                    <a href="#">Корзина{{order}}</a>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout">logout</button>
+                    </form>
+                </li>
+                </li>
+            {% else %}
+                <li class="navbar-item-right navbar-item">
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block body %}
+    {% endblock %}
+    {% block info %}
+    {% endblock %}
+</body>
+</html>

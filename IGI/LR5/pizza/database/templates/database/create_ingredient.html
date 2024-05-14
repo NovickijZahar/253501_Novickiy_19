@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Добавить ингредиент
+{% endblock %}
+
+{% block body %}
+    <h1>Добавление ингредиента</h1>
+{% endblock %}
+
+{% block info %}
+    <form method="post">
+        {% csrf_token %}
+        {{form}}
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}
