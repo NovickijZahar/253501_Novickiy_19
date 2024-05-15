@@ -70,3 +70,12 @@ img{
     margin: 0;
     display: block;
 }
+
+h1{
+    margin-bottom: 10px;
+}
+
+h3{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}

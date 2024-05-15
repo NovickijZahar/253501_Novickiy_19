@@ -19,6 +19,11 @@
                 {% endfor %}
                 <br>
                 <a href="{% url 'pizza_detail' piz.id %}">Подробнее</a><br>
+                <form method="post" action="{% url 'create_order' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="pizza_id" value="{{ piz.id }}">
+                    <button type="submit">Заказать</button>
+                </form>
                 <hr>
             </div>
         {% endfor %}

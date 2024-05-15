@@ -6,15 +6,21 @@
 
 {% block body %}
     <h1>{{pizza.name}}</h1>
-    {% endblock %}
-    
+{% endblock %}
+
 {% block info %}
-    Опичание: {{pizza.description}}<br>
+    Описание: {{pizza.description}}<br>
     Цена: {{pizza.price}}<br>
     Ингредиенты: 
     {% for ing in pizza.ingredients.all %}
         {{ing.name}}
-    {% endfor %}<hr>
+    {% endfor %}
+    <hr>
+    <form method="post" action="{% url 'create_order' %}">
+        {% csrf_token %}
+        <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
+        <button type="submit">Заказать</button>
+    </form>
     {% if user.is_superuser %}
     <a href="{% url 'pizza_delete' pizza.id %}">Удалить</a><br>
     {% endif %}

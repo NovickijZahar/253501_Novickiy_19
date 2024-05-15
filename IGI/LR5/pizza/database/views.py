@@ -1,12 +1,32 @@
-from django.shortcuts import render, redirect
-from . models import Pizzas, Ingredients, Orders
+from django.shortcuts import render, redirect, HttpResponse
+from . models import Pizzas, Ingredients, Carts
 from . forms import PizzasForm, IngredientsForm
-from django.views.generic import DetailView, UpdateView, DeleteView, CreateView
+from django.views.generic import DetailView, UpdateView, DeleteView, CreateView, View
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 def admin_check(user):
     return user.is_superuser
+
+
+class CreateOrderView(View):
+    def post(self, request):
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login')
+        pizza_id = request.POST.get('pizza_id')
+        user = request.user
+        pizza = Pizzas.objects.get(id=pizza_id)
+        if Carts.objects.filter(user=user).exists():
+            cart = Carts.objects.get(user=user)
+            if str(pizza.id) in cart.pizzas:
+                cart.pizzas[str(pizza.id)] += 1
+            else:
+                cart.pizzas[str(pizza.id)] = 1
+        else:
+            cart = Carts.objects.create(user=user)
+            cart.pizzas = {str(pizza.id): 1}
+        cart.save()
+        return HttpResponse("Пицца добавлена в корзину")
 
 
 class PizzasDetailView(DetailView):

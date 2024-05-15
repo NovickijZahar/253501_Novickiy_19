@@ -29,9 +29,9 @@ class Ingredients(models.Model):
         verbose_name_plural = 'Игредиенты'
 
 
-class Orders(models.Model):
-    pizzas = models.ManyToManyField('Pizzas')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Carts(models.Model):
+    pizzas = models.JSONField(default=dict)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Заказ'

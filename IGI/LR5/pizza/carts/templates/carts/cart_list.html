@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Корзина
+{% endblock %}
+
+{% block body %}
+    <h1>Корзина</h1>
+{% endblock %}
+
+{% block info %}
+{% for item in cart.items %}
+    Название пиццы: {{ item.0 }}<br> 
+    Количество: {{item.1}}<hr>
+{% endfor %}
+{% endblock %}

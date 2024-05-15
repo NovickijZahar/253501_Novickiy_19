@@ -1,4 +1,4 @@
-from . models import Pizzas, Ingredients, Orders
+from . models import Pizzas, Ingredients
 from django.forms import ModelForm, TextInput, NumberInput, CheckboxSelectMultiple
 
 class PizzasForm(ModelForm):
