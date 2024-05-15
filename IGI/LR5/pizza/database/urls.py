@@ -8,5 +8,5 @@ urlpatterns = [
     path('<int:pk>', views.PizzasDetailView.as_view(), name='pizza_detail'),
     path('<int:pk>/edit', views.PizzasEditView.as_view(), name='pizza_edit'),
     path('<int:pk>/delete', views.PizzasDeleteView.as_view(), name='pizza_delete'),
-    path('create_order/', views.CreateOrderView.as_view(), name='create_order'),
+    path('add_to_cart/', views.CreateOrderView.as_view(), name='add_to_cart'),
 ]

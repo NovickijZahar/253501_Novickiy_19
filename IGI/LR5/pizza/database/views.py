@@ -26,6 +26,7 @@ class CreateOrderView(View):
             cart = Carts.objects.create(user=user)
             cart.pizzas = {str(pizza.id): 1}
         cart.save()
+        return redirect('/database/')
         return HttpResponse("Пицца добавлена в корзину")
 
 
@@ -71,7 +72,7 @@ def create_ingredient(request):
 @user_passes_test(admin_check)
 def create_pizza(request):
     if request.method == 'POST':
-        form = PizzasForm(request.POST)
+        form = PizzasForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')

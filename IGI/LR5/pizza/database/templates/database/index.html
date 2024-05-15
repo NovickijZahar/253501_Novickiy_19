@@ -7,6 +7,7 @@
 {% block body %}
     <h1>Ассортимент</h1>
 {% endblock %}
+{% load static %}
 {% block info %}
     {% if pizzas %}
         {% for piz in pizzas %}
@@ -14,15 +15,16 @@
                 <h3>{{piz.name}}</h3>
                 {{piz.description}}<br>
                 {{piz.price}}<br>
+                <img src="{{ piz.image.url }}" height="200" width="200"><br>
                 {% for ing in piz.ingredients.all %}
                     {{ing.name}}
                 {% endfor %}
                 <br>
                 <a href="{% url 'pizza_detail' piz.id %}">Подробнее</a><br>
-                <form method="post" action="{% url 'create_order' %}">
+                <form method="post" action="{% url 'add_to_cart' %}">
                     {% csrf_token %}
                     <input type="hidden" name="pizza_id" value="{{ piz.id }}">
-                    <button type="submit">Заказать</button>
+                    <button type="submit">Добавить в корзину</button>
                 </form>
                 <hr>
             </div>

@@ -23,7 +23,7 @@
             {% if user.is_authenticated %}
                 <li class="navbar-item-right navbar-item">
                     <a href="#">{{user.get_username}}</a>
-                    <a href="{% url 'cart_list' %}">Корзина{{order}}</a>
+                    <a href="{% url 'cart_view' %}">Корзина{{order}}</a>
                 <li>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}

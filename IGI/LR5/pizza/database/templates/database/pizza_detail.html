@@ -11,15 +11,16 @@
 {% block info %}
     Описание: {{pizza.description}}<br>
     Цена: {{pizza.price}}<br>
+    <img src="{{ pizza.image.url }}" height="200" width="200"><br>
     Ингредиенты: 
     {% for ing in pizza.ingredients.all %}
         {{ing.name}}
     {% endfor %}
     <hr>
-    <form method="post" action="{% url 'create_order' %}">
+    <form method="post" action="{% url 'add_to_cart' %}">
         {% csrf_token %}
         <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
-        <button type="submit">Заказать</button>
+        <button type="submit">Добавить в корзину</button>
     </form>
     {% if user.is_superuser %}
     <a href="{% url 'pizza_delete' pizza.id %}">Удалить</a><br>

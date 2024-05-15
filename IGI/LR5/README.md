@@ -32,3 +32,7 @@ accounts/reset/done/ [name='password_reset_complete']
 
 # Пароль
 kljqw123
+
+
+<QueryDict: {'csrfmiddlewaretoken': ['OkW5ViwvGAfsW5lMuldopx96t6CufLvjB3VZvN6h3vbefehe0ZoRChCcZA6FIOOA'], 
+'city': ['gs'], 'street': ['etr'], 'house': ['2'], 'entrance': ['3'], 'floor': ['4'], 'apartment': ['1'], 'action': ['make_order']}>

@@ -7,10 +7,50 @@
 {% block body %}
     <h1>Корзина</h1>
 {% endblock %}
-
 {% block info %}
-{% for item in cart.items %}
-    Название пиццы: {{ item.0 }}<br> 
-    Количество: {{item.1}}<hr>
-{% endfor %}
+    {% if cart %}
+        {% for pizza, quantity in cart.items %}
+            <div>
+                {{ pizza.name }}
+                <br>
+                <form method="post" action="{% url 'cart_view' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
+                    Количество
+                    <button type="submit" name="action" value="decrease">-</button>
+                    <span>{{ quantity }}</span>
+                    <button type="submit" name="action" value="increase">+</button>
+                </form>
+                <hr>
+            </div>
+        {% endfor %}
+        Итого: {{sum}}
+        <form method="post" action="{% url 'cart_view' %}">
+            {% csrf_token %}
+            <h4>Адрес доставки</h4>
+            <label for="id_city">Город:</label>
+            <input type="text" name="city" id="id_city" required>
+            <br>
+            <label for="id_street">Улица:</label>
+            <input type="text" name="street" id="id_street" required>
+            <br>
+            <label for="id_house">Дом:</label>
+            <input type="number" name="house" id="id_house" required>
+            <br>
+            <label for="id_entrance">Подъезд:</label>
+            <input type="number" name="entrance" id="id_entrance" required>
+            <br>
+            <label for="id_floor">Этаж:</label>
+            <input type="number" name="floor" id="id_floor" required>
+            <br>
+            <label for="id_apartment">Квартира:</label>
+            <input type="number" name="apartment" id="id_apartment" required>
+            <br>
+            <button type="submit" name="action" value="make_order">Оформить заказ</button>
+            <input type="hidden" name="pizzas" value="{{ json_pizzas }}">
+        </form>
+
+    {% else %}
+        Ваша корзина пуста
+    {% endif %}
 {% endblock %}
