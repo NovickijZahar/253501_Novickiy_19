@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 
 from pathlib import Path
+from django.utils.timezone import get_current_timezone
 import os
 
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = [
     'main',
     'database',
     'carts',
+    'orders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

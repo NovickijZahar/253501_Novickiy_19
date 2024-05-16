@@ -20,21 +20,25 @@
             {% if user.is_superuser %}
                 <li class="navbar-item"><a href="{% url 'create_pizza' %}">Add pizza</a></li>
             {% endif %}
+            {% if user.is_staff %}
+                <li class="navbar-item"><a href="{% url 'active_orders' %}">Активные заказы</a></li>
+            {% endif %}
             {% if user.is_authenticated %}
                 <li class="navbar-item-right navbar-item">
                     <a href="#">{{user.get_username}}</a>
-                    <a href="{% url 'cart_view' %}">Корзина{{order}}</a>
+                    <a href="{% url 'my_orders' %}">Заказы</a>
+                    <a href="{% url 'cart_view' %}">Корзина</a>
                 <li>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit" class="logout">logout</button>
+                        <button type="submit" class="logout">Выйти</button>
                     </form>
                 </li>
                 </li>
             {% else %}
                 <li class="navbar-item-right navbar-item">
-                    <a href="{% url 'login' %}">Login</a>
-                    <a href="{% url 'register' %}">Register</a>
+                    <a href="{% url 'login' %}">Войти</a>
+                    <a href="{% url 'register' %}">Зарегистрироваться</a>
                 </li>
             {% endif %}
         </ul>

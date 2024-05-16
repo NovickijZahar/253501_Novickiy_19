@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from database.models import Carts, Pizzas, Address, Order
+from database.models import Carts, Pizzas, Address, Orders
 from django.utils import timezone
 
 def cart_view(request):
@@ -34,19 +34,19 @@ def cart_view(request):
             else:
                 cart.pizzas[str(pizza_id)] -= 1
         elif action == 'make_order':
-            print(request.POST)
             address = Address.objects.create(city=request.POST.get('city'),
                                    street=request.POST.get('street'),
                                    house=request.POST.get('house'),
                                    entrance=request.POST.get('entrance'),
                                    floor=request.POST.get('floor'),
                                    apartment=request.POST.get('apartment'))
-            order = Order.objects.create(pizzas=request.POST.get('pizzas'),
+            order = Orders.objects.create(pizzas=Carts.objects.filter(user=request.user)[0].pizzas,
                                         user=request.user,
                                         address=address,
                                         order_time=timezone.now(),
                                         lead_time=timezone.now(),
                                         is_complete=False)
+            print(request.POST.get('pizzas'))
             address.save()
             order.save()
             cart.pizzas = {}

@@ -40,13 +40,14 @@ class Carts(models.Model):
         verbose_name_plural = 'Корзины'
 
 
-class Order(models.Model):
+class Orders(models.Model):
     pizzas = models.JSONField(default=dict)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Заказчик')
     address = models.ForeignKey('Address', on_delete=models.CASCADE)
     order_time = models.DateTimeField('Время заказа', default=timezone.now)
     lead_time = models.DateTimeField('Время доставки', default=timezone.now)
     is_complete = models.BooleanField('Готовность заказа', default=False)
+    courier = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Курьер', null=True)
 
     def __str__(self) -> str:
         return f'Заказ {self.user} по адресу город {self.address.city}, улица {self.address.street}, дом {self.address.house}, квартира {self.address.apartment}'
@@ -65,7 +66,7 @@ class Address(models.Model):
     apartment = models.IntegerField('Квартира')
 
     def __str__(self) -> str:
-        return f'Город {self.city}, улица {self.street}, дом {self.house}, квартира {self.apartment}'
+        return f'город {self.city}, улица {self.street}, дом {self.house}, квартира {self.apartment}'
     
     class Meta:
         verbose_name = 'Адрес'

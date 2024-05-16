@@ -84,3 +84,12 @@ h4{
     margin-top: 5px;
     margin-bottom: 0px;
 }
+
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.calendar {
+    margin-right: 10px;
+}

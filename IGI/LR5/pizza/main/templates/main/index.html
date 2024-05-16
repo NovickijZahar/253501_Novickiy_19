@@ -7,3 +7,12 @@
 {% block body %}
     <h1>Главная</h1>
 {% endblock %}
+
+{% block info %}
+    Сегодня: {{current_date.day}}.{% if current_date.month < 10 %}0{% endif %}{{current_date.month}}.{{current_date.year}}<br>
+    Время: {{current_date.time}}<br>
+    Временная зона: {{timezone}}
+    {% for month in months %}
+        <pre>{{ month }}</pre>
+    {% endfor %}
+{% endblock %}

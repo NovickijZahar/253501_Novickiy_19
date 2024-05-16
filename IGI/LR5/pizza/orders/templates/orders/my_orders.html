@@ -1,0 +1,49 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Мои заказы
+{% endblock %}
+
+{% block body %}
+    <h1>Мои заказы</h1>
+{% endblock %}
+
+{% block info %}
+
+    {% if in_progress_arr_pizzas %}
+        <h3>Активные заказы</h3>
+        {% for ord in in_progress_arr_pizzas %}
+            Заказ: 
+            {% for k, v in ord.0.items %}
+                {{k}}({{v}} шт.)
+            {% endfor %}
+            <br>
+            Адрес доставки: {{ord.1.address}}<br>
+            Время заказа: {{ord.1.order_time}}<br>
+            <br>
+        {% endfor %}
+
+    {% else %}
+            <h3>Нет активных заказов</h3>
+    {% endif %}
+    <hr>
+    {% if completed_arr_pizzas %}
+        <h3>Прошлые заказы</h3>
+        {% for ord in completed_arr_pizzas %}
+            Заказ: 
+            {% for k, v in ord.0.items %}
+                {{k}}({{v}} шт.)
+            {% endfor %}
+            <br>
+            Адрес доставки: {{ord.1.address}}<br>
+            Время заказа: {{ord.1.order_time}}<br>
+            Время доставки: {{ord.1.lead_time}}<br>
+            Выполнил: {{ord.1.courier}}<br>
+            <br>
+        {% endfor %}
+    {% else %}
+            <h3>Нет прошлых заказов</h3>
+    {% endif %}
+
+{% endblock %}
+
