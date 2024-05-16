@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 
 class Pizzas(models.Model):
     name = models.CharField('Название', max_length=50)
@@ -71,3 +72,61 @@ class Address(models.Model):
     class Meta:
         verbose_name = 'Адрес'
         verbose_name_plural = 'Адреса'
+
+
+class Contacts(models.Model):
+    name = models.CharField('Имя', max_length=50)
+    surname = models.CharField('Фамилия', max_length=50)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_number = models.CharField('Телефон', validators=[phone_regex], max_length=17, blank=True)
+    work = models.TextField('Выполняемая работа')
+    email = models.EmailField('Почта')
+    image = models.ImageField('Фотография', upload_to='contact_images', default='pizza_images/blank_contact.png')
+
+    def __str__(self) -> str:
+        return f'{self.name} {self.surname}'
+    
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
+
+
+class News(models.Model):
+    title = models.CharField('Заголовок', max_length=50)
+    content = models.TextField('Содержание')
+    publication_date = models.DateField('Дата публикации')
+    image = models.ImageField('Изображение', upload_to='news_images', default='news_images/blank_news.png')
+
+    def __str__(self) -> str:
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+
+
+class Vacancies(models.Model):
+    title = models.CharField('Название', max_length=50)
+    description = models.TextField('Описание')
+
+    def __str__(self) -> str:
+        return self.title
+    
+    class Meta:
+        verbose_name = 'Вакансия'
+        verbose_name_plural = 'Вакансии'
+
+
+class Reviews(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Пользователь')
+    rating = models.IntegerField('Оценка', validators=[MinValueValidator(1), MaxValueValidator(5)])
+    content = models.TextField('Содержание', blank=True)
+    date = models.DateField('Дата')
+
+    def __str__(self) -> str:
+        return f'Отзыв {self.user} с оценкой {self.rating}'
+    
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+
