@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    {{new.title}}
+{% endblock %}
+
+{% block body %}
+    <h1>{{new.title}}</h1>
+{% endblock %}
+
+{% block info %}
+    {{new.content}}<hr>
+    <img src="{{ new.image.url }}" height="200" width="200"><br><hr>
+    Опубликовано: {{new.publication_date}}
+{% endblock %}

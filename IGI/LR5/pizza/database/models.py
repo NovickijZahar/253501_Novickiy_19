@@ -77,14 +77,14 @@ class Address(models.Model):
 class Contacts(models.Model):
     name = models.CharField('Имя', max_length=50)
     surname = models.CharField('Фамилия', max_length=50)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+    phone_regex = RegexValidator(regex=r'\+375\((29|33|44|25)\)\d{3}-\d{2}-\d{2}', message="Номер должен быть в формате +375(29|33|44|25)XXX-XX-XX")
     phone_number = models.CharField('Телефон', validators=[phone_regex], max_length=17, blank=True)
     work = models.TextField('Выполняемая работа')
     email = models.EmailField('Почта')
     image = models.ImageField('Фотография', upload_to='contact_images', default='pizza_images/blank_contact.png')
 
     def __str__(self) -> str:
-        return f'{self.name} {self.surname}'
+        return f'{self.surname} {self.name} '
     
     class Meta:
         verbose_name = 'Контакт'
@@ -107,7 +107,9 @@ class News(models.Model):
 
 class Vacancies(models.Model):
     title = models.CharField('Название', max_length=50)
-    description = models.TextField('Описание')
+    description = models.TextField('Описание', blank=True)
+    schedule_info = models.TextField('График работы', blank=True)
+    salary_info = models.TextField('Зарплата', blank=True)
 
     def __str__(self) -> str:
         return self.title
@@ -121,7 +123,7 @@ class Reviews(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='Пользователь')
     rating = models.IntegerField('Оценка', validators=[MinValueValidator(1), MaxValueValidator(5)])
     content = models.TextField('Содержание', blank=True)
-    date = models.DateField('Дата')
+    date = models.DateTimeField('Дата')
 
     def __str__(self) -> str:
         return f'Отзыв {self.user} с оценкой {self.rating}'

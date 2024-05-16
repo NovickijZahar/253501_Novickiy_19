@@ -1,0 +1,30 @@
+{% extends 'main/layout.html' %}
+
+
+{% block title %}
+    Отзывы
+{% endblock %}
+
+{% block body %}
+    <h1>Отзывы</h1>
+{% endblock %}
+
+{% block info %}
+    <form method="post" action="{% url 'reviews' %}">
+        {% csrf_token %}
+        <label for="rating">Оценка:</label>
+        <input type="number" name="rating" id="rating" required><br>
+        <label for="content">Комментарии:</label><br>
+        <textarea type="text" name="content" id="content"></textarea><br>
+        <button type="submit" name="action" value="leave_review">Оставить отзыв</button>
+    </form>
+    <br><hr>
+    <b>Средняя оценка: {{avg}}/5</b><br><hr>
+    {% for r in revs %}
+    <b>Пользователь:</b> {{r.user}}<br>
+    <b>Оценка:</b> {{r.rating}}/5<br>
+    <b>Опубликовано:</b> {{r.date}}<br>
+    <b>Комментарии:</b> {{r.content}}
+    <hr>
+    {% endfor %}
+{% endblock %}

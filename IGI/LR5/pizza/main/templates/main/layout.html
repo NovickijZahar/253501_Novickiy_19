@@ -12,12 +12,15 @@
         <ul class="navbar-list">
             <li class="navbar-item"><a href="{% url 'home' %}">
                 <img src="{% static 'images/logo.jpg' %}" width="60px" height="60px"></a></li>
-            <li class="navbar-item"><a href="{% url 'about' %}">About</a></li>
-            <li class="navbar-item"><a href="{% url 'database_home' %}" class="abc">Pizzas</a></li>
+                <li class="navbar-item"><a href="{% url 'database_home' %}" class="abc">Ассортимент</a></li>
+                <li class="navbar-item"><a href="{% url 'about' %}">Информация</a></li>
+            <li class="navbar-item"><a href="{% url 'contacts' %}" class="abc">Контакты</a></li>
+            <li class="navbar-item"><a href="{% url 'vacancies' %}" class="abc">Вакансии</a></li>
+            <li class="navbar-item"><a href="{% url 'news' %}" class="abc">Новости</a></li>
+            <li class="navbar-item"><a href="{% url 'reviews' %}" class="abc">Отзывы</a></li>
+            <li class="navbar-item"><a href="{% url 'privacy' %}" class="abc">Политика конфиденциальности</a></li>
             {% if user.is_superuser %}
                 <li class="navbar-item"><a href="{% url 'create_ingredient' %}">Add ingredient</a></li>
-            {% endif %}
-            {% if user.is_superuser %}
                 <li class="navbar-item"><a href="{% url 'create_pizza' %}">Add pizza</a></li>
             {% endif %}
             {% if user.is_staff %}

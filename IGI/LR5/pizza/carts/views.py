@@ -46,7 +46,6 @@ def cart_view(request):
                                         order_time=timezone.now(),
                                         lead_time=timezone.now(),
                                         is_complete=False)
-            print(request.POST.get('pizzas'))
             address.save()
             order.save()
             cart.pizzas = {}
