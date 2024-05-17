@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block info %}
+    <h2>Добро пожаловать на PizzaHub</h2>
     Сегодня: {{current_date.day}}.{% if current_date.month < 10 %}0{% endif %}{{current_date.month}}.{{current_date.year}}<br>
     Время: {{current_date.time}}<br>
     Временная зона: {{timezone}}

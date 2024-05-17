@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+
+{% block title %}
+    Случайные шутки
+{% endblock %}
+
+{% block body %}
+    <h1>Случайные шутки</h1>
+{% endblock %}
+
+{% block info %}
+    {% for joke in data %}
+        {{joke.setup}}<br>
+        {{joke.punchline}}<hr>
+    {% endfor %}
+{% endblock %}

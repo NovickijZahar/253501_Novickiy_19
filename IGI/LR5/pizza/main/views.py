@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from . forms import RegisterUserForm
@@ -7,6 +7,7 @@ import calendar
 import datetime
 from django.utils.timezone import get_current_timezone
 from django.views.generic import DetailView
+import requests
 
 def index(request):
     cal = calendar.TextCalendar()
@@ -97,3 +98,25 @@ def reviews(request):
 
 def privacy(request):
     return render(request, 'main/privacy.html')
+
+
+def api1(request):
+    response = requests.get('https://official-joke-api.appspot.com/random_ten')
+    if response.status_code == 200:
+        data = response.json()  
+        return render(request, 'main/api1.html', {'data': data})
+    else:
+        return HttpResponse('Ошибка при получении данных из API')
+    
+def api2(request):
+    response1 = requests.get('https://api.ipify.org/?format=json')
+    if response1.status_code == 200:
+        ip = response1.json()
+        response2 = requests.get(f'https://ipinfo.io/{ip["ip"]}/geo')
+        if response2.status_code == 200:
+            info = response2.json()
+            return render(request, 'main/api2.html', {'ip': ip, 'info': info})
+        else:
+            return HttpResponse('Ошибка при получении данных из API')
+    else:
+        return HttpResponse('Ошибка при получении данных из API')
