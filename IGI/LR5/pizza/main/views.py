@@ -8,6 +8,9 @@ import datetime
 from django.utils.timezone import get_current_timezone
 from django.views.generic import DetailView
 import requests
+import logging
+
+
 
 def index(request):
     cal = calendar.TextCalendar()
@@ -29,10 +32,19 @@ def index(request):
         'current_date': datetime.datetime.now(),
         'timezone': get_current_timezone()
     }
+
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited main page')
+
     return render(request, 'main/index.html', data)
 
 
 def about(request):
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited about page')
+
     return render(request, 'main/about.html')
 
 
@@ -45,16 +57,31 @@ def register(request):
             user.save()
             return redirect('home')
     form = RegisterUserForm()
+
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited register page')
+
     return render(request, 'registration/register.html', {'form': form})
 
 
 def contacts(request):
     cons = Contacts.objects.all()
+
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited contacts page')
+
     return render(request, 'main/contacts.html', {'cons': cons})
 
 
 def news(request):
     ns = News.objects.order_by('-publication_date')
+
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited news page')
+
     return render(request, 'main/news.html', {'ns': ns})
 
 
@@ -70,6 +97,11 @@ def vacancies(request):
         service = Contacts.objects.get(work='Руководитель кадровой службы')
     except:
         service = None
+
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited vacancies page')
+
     return render(request, 'main/vacancies.html', {'vacs': vacs, 'ser': service})
 
 
@@ -89,39 +121,80 @@ def reviews(request):
                                         rating=request.POST.get('rating'),
                                         content=request.POST.get('content'),
                                         date=timezone.now())
+                
+                logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+                logging.info('Leaved a review')
+
             except:
                 rev = Reviews.objects.get(user=request.user)
                 rev.rating = request.POST.get('rating')
                 rev.content = request.POST.get('content')
                 rev.date = timezone.now()
+
+                logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+                logging.info('Changed a review')
+
             finally:
                 rev.save()
                 return redirect('/reviews')
+
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited review page')
 
     return render(request, 'main/reviews.html', {'revs': revs, 'avg': avg})
 
 
 def privacy(request):
+    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+    logging.info('Visited privacy page')
+
     return render(request, 'main/privacy.html')
 
 
 def api1(request):
-    response = requests.get('https://official-joke-api.appspot.com/random_ten')
-    if response.status_code == 200:
+    try: 
+        response = requests.get('https://official-joke-api.appspot.com/random_ten')
         data = response.json()  
+
+        logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                        format="%(asctime)s %(levelname)s %(message)s")
+        logging.info('Visited api1 page')
+
         return render(request, 'main/api1.html', {'data': data})
-    else:
+    except:
+        logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+        logging.warning('Error in api1 page')
+
         return HttpResponse('Ошибка при получении данных из API')
-    
+
+  
 def api2(request):
-    response1 = requests.get('https://api.ipify.org/?format=json')
-    if response1.status_code == 200:
+    try:
+        response1 = requests.get('https://api.ipify.org/?format=json')
         ip = response1.json()
-        response2 = requests.get(f'https://ipinfo.io/{ip["ip"]}/geo')
-        if response2.status_code == 200:
+        try:
+            response2 = requests.get(f'https://ipinfo.io/{ip["ip"]}/geo')
             info = response2.json()
+
+            logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                        format="%(asctime)s %(levelname)s %(message)s")
+            logging.info('Visited api2 page')
+
             return render(request, 'main/api2.html', {'ip': ip, 'info': info})
-        else:
+        except:
+            logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+            logging.warning('Error in api2 page')
+
             return HttpResponse('Ошибка при получении данных из API')
-    else:
+    except:
+        logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
+                    format="%(asctime)s %(levelname)s %(message)s")
+        logging.warning('Error in api2 page')
+
         return HttpResponse('Ошибка при получении данных из API')

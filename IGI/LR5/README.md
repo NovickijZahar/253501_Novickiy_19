@@ -17,6 +17,8 @@ python manage.py makemigrations
 python manage.py migrate
 # Создать администратора 
 python manage.py createsuperuser
+# Проестировать
+python manage.py test [name]
 
 # Страницы, создающиеся при подключении django.contrib.auth.urls, и их названия
 accounts/login/ [name='login']
