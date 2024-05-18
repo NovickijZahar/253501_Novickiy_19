@@ -75,10 +75,15 @@ def vacancies(request):
 
 def reviews(request):
     revs = Reviews.objects.order_by('-date')
-    avg = round(sum(map(lambda x: x.rating, revs)) / len(revs), 1)
+    if revs:
+        avg = round(sum(map(lambda x: x.rating, revs)) / len(revs), 1)
+    else:
+        avg = 0
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'leave_review':
+            if not request.user.is_authenticated:
+                return redirect('/accounts/login')
             try:
                 rev = Reviews.objects.create(user=request.user,
                                         rating=request.POST.get('rating'),

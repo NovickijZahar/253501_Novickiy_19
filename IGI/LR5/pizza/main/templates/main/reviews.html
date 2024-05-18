@@ -12,14 +12,18 @@
 {% block info %}
     <form method="post" action="{% url 'reviews' %}">
         {% csrf_token %}
-        <label for="rating">Оценка:</label>
-        <input type="number" name="rating" id="rating" required><br>
+        <label for="rating">Оценка(1-5):</label>
+        <input type="text" name="rating" id="rating" pattern="[1-5]" required><br>
         <label for="content">Комментарии:</label><br>
         <textarea type="text" name="content" id="content"></textarea><br>
         <button type="submit" name="action" value="leave_review">Оставить отзыв</button>
     </form>
     <br><hr>
-    <b>Средняя оценка: {{avg}}/5</b><br><hr>
+    {% if avg %}
+        <b>Средняя оценка: {{avg}}/5</b><br><hr>
+        {% else %}
+        <b>Пока нет отзывов</b><br><hr>
+    {% endif %}
     {% for r in revs %}
     <b>Пользователь:</b> {{r.user}}<br>
     <b>Оценка:</b> {{r.rating}}/5<br>

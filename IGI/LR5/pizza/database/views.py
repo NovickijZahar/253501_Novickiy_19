@@ -27,7 +27,6 @@ class CreateOrderView(View):
             cart.pizzas = {str(pizza.id): 1}
         cart.save()
         return redirect('/database/')
-        return HttpResponse("Пицца добавлена в корзину")
 
 
 class PizzasDetailView(DetailView):
