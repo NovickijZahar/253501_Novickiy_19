@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+
+
+{% block title %}
+    FAQ
+{% endblock %}
+
+{% block body %}
+    <h1>FAQ</h1>
+{% endblock %}
+
+{% block info %}
+    <form method="post" action="{% url 'faq' %}">
+        {% csrf_token %}
+        <label for="content">Вопрос:</label><br>
+        <textarea type="text" name="question" id="content"></textarea><br>
+        <button type="submit" name="action" value="do_question">Задать вопрос</button>
+    </form>
+    <hr><hr>
+    {% if user.is_superuser %}
+    {% for f in un_faqs %}
+        Дата вопроса: {{f.question_date}}<br>
+        Вопрос: {{f.question}}<br>
+        <form method="post" action="{% url 'faq' %}">
+            {% csrf_token %}
+            <label for="content">Ответ:</label><br>
+            <textarea type="text" name="question" id="content"></textarea><br>
+            <button type="submit" name="action" value="do_answer">Ответить</button>
+            <input type="hidden" name="faqid" value="{{f.id}}">
+        </form>
+    {% endfor %}
+    <hr><hr>
+    {% endif %}
+    {% for f in faqs %}
+    Дата вопроса: {{f.question_date}}<br>
+    Дата ответа: {{f.answer_date}}<br>
+    Вопрос: {{f.question}}<br>
+    Ответ: {{f.answer}}<br>
+        <hr>
+    {% endfor %}
+{% endblock %}

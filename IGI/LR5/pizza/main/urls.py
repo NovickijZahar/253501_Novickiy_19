@@ -12,5 +12,6 @@ urlpatterns = [
     re_path(r'^reviews', views.reviews, name='reviews'),
     path('privacy', views.privacy, name='privacy'),
     path('api1', views.api1, name='api1'),
-    path('api2', views.api2, name='api2')
+    path('api2', views.api2, name='api2'),
+    re_path(r'^faq', views.faq, name='faq')
 ]

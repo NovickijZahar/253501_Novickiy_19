@@ -204,3 +204,29 @@ def api2(request):
         logging.warning('Error in api2 page')
 
         return HttpResponse('Ошибка при получении данных из API')
+    
+
+def faq(request):
+    un_faqs = FAQs.objects.filter(is_complete=False)
+    faqs = FAQs.objects.filter(is_complete=True)
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        if action == 'do_question':
+            if not request.user.is_authenticated:
+                return redirect('/accounts/login')
+            f = FAQs.objects.create(question_date=timezone.now(),
+                                    answer_date=timezone.now(),
+                                    question=request.POST.get('question'),
+                                    answer='')
+            f.save()
+            return redirect('/faq')
+        elif action == 'do_answer':
+            if not request.user.is_superuser:
+                return redirect('/accounts/login')
+            f = FAQs.objects.get(id=request.POST.get('faqid'))
+            f.answer_date = timezone.now()
+            f.answer = request.POST.get('question')
+            f.is_complete = True
+            f.save()
+            
+    return render(request, 'main/faq.html', {'faqs': faqs, 'un_faqs': un_faqs})

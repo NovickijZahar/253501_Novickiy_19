@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 
 from pathlib import Path
-from django.utils.timezone import get_current_timezone
+from tzlocal import get_localzone_name
 import os
 
 
@@ -113,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'Europe/Minsk'
+TIME_ZONE = get_localzone_name()
 
 USE_I18N = True
 

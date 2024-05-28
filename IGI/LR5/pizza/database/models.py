@@ -147,3 +147,18 @@ class Coupons(models.Model):
     class Meta:
         verbose_name = 'Купон'
         verbose_name_plural = 'Купоны'
+
+
+class FAQs(models.Model):
+    question_date = models.DateTimeField('Время заказа', default=timezone.now)
+    answer_date = models.DateTimeField('Время заказа', default=timezone.now)
+    question = models.TextField('Вопрос')
+    answer = models.TextField('Ответ')
+    is_complete = models.BooleanField('Закрыт', default=False)
+
+    def __str__(self) -> str:
+        return f'Вопрос {self.answer_date}'
+    
+    class Meta:
+        verbose_name = 'FAQ'
+        verbose_name_plural = 'FAQs'

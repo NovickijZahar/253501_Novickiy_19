@@ -21,6 +21,7 @@
             <li class="navbar-item"><a href="{% url 'privacy' %}" class="abc">Политика конфиденциальности</a></li>
             <li class="navbar-item"><a href="{% url 'api1' %}" class="abc">Api1</a></li>
             <li class="navbar-item"><a href="{% url 'api2' %}" class="abc">Api2</a></li>
+            <li class="navbar-item"><a href="{% url 'faq' %}" class="abc">FAQ</a></li>
             {% if user.is_superuser %}
                 <li class="navbar-item"><a href="{% url 'create_ingredient' %}">Add ingredient</a></li>
                 <li class="navbar-item"><a href="{% url 'create_pizza' %}">Add pizza</a></li>
