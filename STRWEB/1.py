@@ -1,7 +1,16 @@
-import logging
+# import matplotlib.pyplot as plt
 
-logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
-                    format="%(asctime)s %(levelname)s %(message)s")
+# # Данные для круговой диаграммы
+# labels = ['Apples', 'Bananas', 'Oranges', 'Grapes']
+# sizes = [30, 25, 20, 15]
 
+# # Построение круговой диаграммы
+# plt.pie(sizes, labels=labels, autopct='%1.1f%%')
 
-logging.info('2')
+# # Настройка заголовка
+# plt.title('Pie Chart')
+
+# # Отображение круговой диаграммы
+# plt.show()
+
+d = {}

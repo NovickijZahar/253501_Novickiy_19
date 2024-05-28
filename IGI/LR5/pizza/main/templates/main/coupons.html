@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+
+{% block title %}
+    Купоны
+{% endblock %}
+
+{% block body %}
+    <h1>Купоны</h1>
+{% endblock %}
+
+{% block info %}
+    {% for c in cps%}
+        {{c}}<br>
+    {% endfor %}
+{% endblock %}

@@ -10,11 +10,22 @@
 {% load static %}
 {% block info %}
     {% if pizzas %}
+    <form method="get" action="">
+        <label for="sort">Сортировать:</label>
+        <select name="sort" id="sort">
+            <option value="">Не выбрано</option>
+            <option value="1">Количествую ингредиентов(по убыванию)</option>
+            <option value="2">Количествую ингредиентов(по возрастанию)</option>
+            <option value="3">Цена(по убыванию)</option>
+            <option value="4">Цена(по возрастанию)</option>
+        </select>
+        <br>
+        <button type="submit">Применить фильтры и сортировку</button>
+    </form>
         {% for piz in pizzas %}
             <div>
                 <h3>{{piz.name}}</h3>
-                {{piz.description}}<br>
-                {{piz.price}}<br>
+                {{piz.price}} BYN<br>
                 <img src="{{ piz.image.url }}" height="200" width="200"><br>
                 {% for ing in piz.ingredients.all %}
                     {{ing.name}}
@@ -28,7 +39,9 @@
                 </form>
                 <hr>
             </div>
-        {% endfor %}
+            {% endfor %}
+        <img src="/media/plots/plot1.png"><hr>
+        <img src="/media/plots/plot2.png">
     {% else %}
             <h3>Нет пицц</h3>
     {% endif %}

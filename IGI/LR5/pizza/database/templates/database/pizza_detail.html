@@ -10,11 +10,11 @@
 
 {% block info %}
     Описание: {{pizza.description}}<br>
-    Цена: {{pizza.price}}<br>
+    Цена: {{pizza.price}} BYN<br>
     <img src="{{ pizza.image.url }}" height="200" width="200"><br>
     Ингредиенты: 
     {% for ing in pizza.ingredients.all %}
-        {{ing.name}}
+        {{ing.name|lower}}
     {% endfor %}
     <hr>
     <form method="post" action="{% url 'add_to_cart' %}">

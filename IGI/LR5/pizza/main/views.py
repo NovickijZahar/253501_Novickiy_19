@@ -13,6 +13,7 @@ import logging
 
 
 def index(request):
+    ns = News.objects.order_by('-publication_date')
     cal = calendar.TextCalendar()
     current_date = datetime.datetime.now()
     if 1 < current_date.month < 12:
@@ -30,7 +31,8 @@ def index(request):
     data = {
         'months': [month_calendar1, month_calendar2, month_calendar3],
         'current_date': datetime.datetime.now(),
-        'timezone': get_current_timezone()
+        'timezone': get_current_timezone(),
+        'ns': ns
     }
 
     logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
@@ -40,12 +42,12 @@ def index(request):
     return render(request, 'main/index.html', data)
 
 
-def about(request):
+def coupons(request):
     logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                     format="%(asctime)s %(levelname)s %(message)s")
-    logging.info('Visited about page')
-
-    return render(request, 'main/about.html')
+    logging.info('Visited coupons page')
+    cps = Coupons.objects.all()
+    return render(request, 'main/coupons.html', {'cps': cps})
 
 
 def register(request):

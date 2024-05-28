@@ -19,6 +19,9 @@ python manage.py migrate
 python manage.py createsuperuser
 # Проестировать
 python manage.py test [name]
+# Проверить покрытость тестами
+coverage run manage.py test
+coverage report
 
 # Страницы, создающиеся при подключении django.contrib.auth.urls, и их названия
 accounts/login/ [name='login']

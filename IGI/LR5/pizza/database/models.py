@@ -135,3 +135,15 @@ class Reviews(models.Model):
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
 
+
+class Coupons(models.Model):
+    discount = models.FloatField('Скидка', validators=[MinValueValidator(0), MaxValueValidator(1)])
+    start_data = models.DateField('Дата начала')
+    end_data = models.DateField('Дата конца')
+
+    def __str__(self) -> str:
+        return f'Купон со скидкой {100 * self.discount}% с {self.start_data} по {self.end_data}'
+
+    class Meta:
+        verbose_name = 'Купон'
+        verbose_name_plural = 'Купоны'
