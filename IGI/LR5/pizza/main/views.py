@@ -9,7 +9,7 @@ from django.utils.timezone import get_current_timezone
 from django.views.generic import DetailView
 import requests
 import logging
-
+import translators as ts
 
 
 def index(request):
@@ -160,13 +160,17 @@ def privacy(request):
 def api1(request):
     try: 
         response = requests.get('https://official-joke-api.appspot.com/random_ten')
-        data = response.json()  
+        data = response.json()
+        data2 = []
+        for d in data:
+            data2.append({'setup': ts.translate_text(d['setup'], to_language='ru'), 
+                          'punchline': ts.translate_text(d['punchline'], to_language='ru')})
 
         logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                         format="%(asctime)s %(levelname)s %(message)s")
         logging.info('Visited api1 page')
 
-        return render(request, 'main/api1.html', {'data': data})
+        return render(request, 'main/api1.html', {'data': data2})
     except:
         logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                     format="%(asctime)s %(levelname)s %(message)s")
