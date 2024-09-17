@@ -10,20 +10,23 @@
 {% block info %}
     {% if cart %}
         {% for pizza, quantity in cart.items %}
-            <div>
-                {{ pizza.name }}
-                <br>
-                <form method="post" action="{% url 'cart_view' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
-                    Количество
-                    <button type="submit" name="action" value="decrease">-</button>
-                    <span>{{ quantity }}</span>
-                    <button type="submit" name="action" value="increase">+</button>
-                </form>
-                <hr>
-            </div>
+            {{ pizza.name }}
+            <br>
+            <form id="change_amount" method="post" action="{% url 'cart_view' %}">
+                {% csrf_token %}
+                <input type="hidden" name="pizza_id" value="{{ pizza.id }}">
+                Количество
+                <button type="submit" name="action" value="decrease">-</button>
+                <span>{{ quantity }}</span>
+                <button type="submit" name="action" value="increase">+</button>
+                {% load static %}
+                <button type="submit" name="action" value="remove"> 
+                    <img src="{% static 'images/remove_icon.png' %}" title="Удалить" width="25">
+                </button>
+            </form>
+            <hr>
         {% endfor %}
+        </table>
         Итого: {{sum}}
         <form method="post" action="{% url 'cart_view' %}">
             {% csrf_token %}

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Novickiy Zahar">
+    <meta name="description" content="Сайт, позволяющий заказать пицу из сети пиццерий &quot;PizzaHub&quot;">
     <title>{% block title %}{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.jpg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <base target="_self">
 </head>
 <body>
     <nav class="navbar">
         <ul class="navbar-list">
             <li class="navbar-item"><a href="{% url 'home' %}">
-                <img src="{% static 'images/logo.jpg' %}" width="60px" height="60px"></a></li>
+                <img src="{% static 'images/logo.jpg' %}" width="60" height="60" alt="Логотип"></a></li>
                 <li class="navbar-item"><a href="{% url 'database_home' %}" class="abc">Ассортимент</a></li>
                 <li class="navbar-item"><a href="{% url 'coupons' %}">Купоны</a></li>
             <li class="navbar-item"><a href="{% url 'contacts' %}" class="abc">Контакты</a></li>
@@ -22,6 +26,7 @@
             <li class="navbar-item"><a href="{% url 'api1' %}" class="abc">Api1</a></li>
             <li class="navbar-item"><a href="{% url 'api2' %}" class="abc">Api2</a></li>
             <li class="navbar-item"><a href="{% url 'faq' %}" class="abc">FAQ</a></li>
+            <li class="navbar-item"><a href="{% url 'about' %}" class="abc">О компании</a></li>
             {% if user.is_superuser %}
                 <li class="navbar-item"><a href="{% url 'create_ingredient' %}">Add ingredient</a></li>
                 <li class="navbar-item"><a href="{% url 'create_pizza' %}">Add pizza</a></li>
@@ -40,7 +45,6 @@
                         <button type="submit" class="logout">Выйти</button>
                     </form>
                 </li>
-                </li>
             {% else %}
                 <li class="navbar-item-right navbar-item">
                     <a href="{% url 'login' %}">Войти</a>
@@ -49,9 +53,25 @@
             {% endif %}
         </ul>
     </nav>
-    {% block body %}
-    {% endblock %}
-    {% block info %}
-    {% endblock %}
+    <br>
+    <aside>
+        <ol>
+            <li><a href="#header">Шапка</a></li>
+            <li><a href="#main">Содержимое</a></li>
+            <li><a href="#footer">Подвал</a></li>
+        </ol>
+    </aside>
+    <header id="header">
+        {% block body %}
+        {% endblock %}
+    </header>
+    <main id="main">
+        {% block info %}
+        {% endblock %}
+    </main>
+    <hr size="10px" color="yellow">
+    <footer id="footer">
+        <p dir="rtl">PizzaHub <a href="#header">Наверх</a></p>
+    </footer>
 </body>
 </html>

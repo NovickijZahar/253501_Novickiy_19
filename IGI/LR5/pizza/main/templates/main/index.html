@@ -10,11 +10,59 @@
 
 {% block info %}
     <h2>Добро пожаловать на PizzaHub</h2>
-    Сегодня: {{current_date.day}}.{% if current_date.month < 10 %}0{% endif %}{{current_date.month}}.{{current_date.year}}<br>
-    Время: {{current_date.time}}<br>
+    <p><dfn title="PizzaHub">PizzaHub</dfn> &mdash; это не просто пиццерия, 
+        это место, где каждый кусочек пиццы становится настоящим кулинарным произведением искусства.</p>
+    Сегодня: <time datetime="{{current_date.year}}-{{current_date.month}}-{{current_date.day}}">
+        {{current_date.day}}.{% if current_date.month < 10 %}0{% endif %}{{current_date.month}}.{{current_date.year}}</time><br>
+    Время: <time datetime="{{current_date.time}}"> {{current_date.time}}</time><br>
     Временная зона: {{timezone}}
     {% for month in months %}
         <pre>{{ month }}</pre>
     {% endfor %}
-    {% include 'main/news.html' %}
+    <section id="map">
+        <h2>Как к нам добраться</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.902285290861!2d27.55807220091548!3d53.89612636041756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfc464205889%3A0x608254b4a992237d!2zMy3RjyDQs9C-0YDQvtC00YHQutCw0Y8g0LrQu9C40L3QuNGH0LXRgdC60LDRjyDQsdC-0LvRjNC90LjRhtCwINC40LzQtdC90Lgg0JUu0JIuINCa0LvRg9C80L7QstCw!5e0!3m2!1sru!2sby!4v1726614020317!5m2!1sru!2sby" 
+        width="600" height="450" style="border:1;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+    <section id="banners">
+        <h3>Наши баннеры</h3>
+        {% load static %}
+        <table border>
+            <tr>
+                <td>
+                    <img src="{% static 'images/banner1.jfif' %}" width="300">
+                </td>
+                <td>
+                    <img src="{% static 'images/banner2.jpg' %}" width="300">
+                </td>
+            </tr>
+            <tr>
+                <td><a href="{% static 'images/banner1.jfif' %}" download="">Скачать баннер</a></td>
+                <td><a href="{% static 'images/banner2.jpg' %}" download="">Скачать баннер</a></td>
+            </tr>
+        </table>
+    </section>
+    <section id="partners">
+        <h3>Наши партнеры</h3>
+        {% for partner in partners %}
+            <a href="{{ partner.url }}" target="_blank">
+                <figure>
+                    <img src="{{ partner.logo.url }}" height="300" width="300" alt="Логотип партнера">
+                    <figcaption>
+                        <p>{{partner.name}}</p>
+                    </figcaption>
+                </figure>
+            </a>
+        {% endfor %}
+    </section>
+    <hr>
+    <section id="last_news">
+        <h2>Последние новости</h2>
+        <img src="{{ n.image.url }}" height="250" width="300" alt="Изображение новости">
+        <b>{{n.title}}</b><br>
+        Опубликовано: {{n.publication_date}}<br>
+        <a href="{% url 'news_detail' n.id %}">Подробнее</a><br>
+        <a href="{% url 'news' %}">Все новости</a>
+        <hr>
+    </section>
 {% endblock %}

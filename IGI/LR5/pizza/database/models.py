@@ -138,11 +138,12 @@ class Reviews(models.Model):
 
 class Coupons(models.Model):
     discount = models.FloatField('Скидка', validators=[MinValueValidator(0), MaxValueValidator(1)])
-    start_data = models.DateField('Дата начала')
-    end_data = models.DateField('Дата конца')
+    start_date = models.DateField('Дата начала', default='2024-12-12')
+    end_date = models.DateField('Дата конца', default='2024-12-12')
+    coupon = models.CharField('Значение', max_length=10, default='AAAAAAAAAA')
 
     def __str__(self) -> str:
-        return f'Купон со скидкой {100 * self.discount}% с {self.start_data} по {self.end_data}'
+        return f'Купон со скидкой {100 * self.discount}% с {self.start_date} по {self.end_date}'
 
     class Meta:
         verbose_name = 'Купон'
@@ -162,3 +163,16 @@ class FAQs(models.Model):
     class Meta:
         verbose_name = 'FAQ'
         verbose_name_plural = 'FAQs'
+
+
+class Partners(models.Model):
+    name = models.CharField('Название', max_length=50)
+    url = models.URLField('Ссылка на страницу партнера')
+    logo = models.ImageField('Логотип', upload_to='partner_images')
+
+    def __str__(self) -> str:
+        return f'Партнер {self.name}'
+
+    class Meta:
+        verbose_name = 'Партнер'
+        verbose_name_plural = 'Партнеры'

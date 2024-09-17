@@ -12,10 +12,22 @@
     Описание: {{pizza.description}}<br>
     Цена: {{pizza.price}} BYN<br>
     <img src="{{ pizza.image.url }}" height="200" width="200"><br>
-    Ингредиенты: 
-    {% for ing in pizza.ingredients.all %}
-        {{ing.name|lower}}
-    {% endfor %}
+    <table border>
+        <tr>
+            <th colspan="{{pizza.ingredients.all.count}}">
+                <div align="center">
+                    Ингредиенты: 
+                </div>
+            </th>
+        </tr>
+        <tr>
+            {% for ing in pizza.ingredients.all %}
+            <td>    
+                {{ing.name|lower}}
+            </td>
+            {% endfor %}
+        </tr>
+    </table>
     <hr>
     <form method="post" action="{% url 'add_to_cart' %}">
         {% csrf_token %}

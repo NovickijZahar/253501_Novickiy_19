@@ -12,10 +12,10 @@
 {% block info %}
     {% for c in cons %}
     <img src="{{ c.image.url }}" height="250" width="300">
-        {{c}}<br>
-        Должность: {{c.work|lower}}<br>
-        Номерт телефона: {{c.phone_number}}<br>
-        Почта: {{c.email}}<br>
+        <span itemprop="fullname">{{c}}</span><br>
+        Должность: <span itemprop="job_title">{{c.work|lower}}</span><br>
+        Номерт телефона: <span itemprop="phone_number"><a href="tel:{{c.phone_number}}">{{c.phone_number}}</a></span><br>
+        Почта: <span itemprop="email"><a href="mailto:{{ser.email}}">{{c.email}}</a></span><br>
         <hr>
     {% endfor %}
 {% endblock %}

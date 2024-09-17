@@ -25,7 +25,6 @@ def cart_view(request):
     if request.method == 'POST':
         pizza_id = request.POST.get('pizza_id')
         action = request.POST.get('action')
-
         if action == 'increase':
             cart.pizzas[str(pizza_id)] += 1
         elif action == 'decrease':
@@ -33,6 +32,8 @@ def cart_view(request):
                 del cart.pizzas[str(pizza_id)]
             else:
                 cart.pizzas[str(pizza_id)] -= 1
+        elif action == 'remove':
+            del cart.pizzas[str(pizza_id)]
         elif action == 'make_order':
             address = Address.objects.create(city=request.POST.get('city'),
                                    street=request.POST.get('street'),

@@ -28,14 +28,21 @@
             <button type="submit" name="action" value="do_answer">Ответить</button>
             <input type="hidden" name="faqid" value="{{f.id}}">
         </form>
-    {% endfor %}
-    <hr><hr>
+        {% endfor %}
+    {% if un_faqs %}
+        <hr><hr>
+    {% endif %}
     {% endif %}
     {% for f in faqs %}
-    Дата вопроса: {{f.question_date}}<br>
-    Дата ответа: {{f.answer_date}}<br>
-    Вопрос: {{f.question}}<br>
-    Ответ: {{f.answer}}<br>
+    <details>
+        <summary>
+            {{f.question}}
+        </summary>
+        Вопрос: {{f.question}}<br>
+        Дата вопроса: <time datetime="{{f.question_date|date:'Y-m-d'}}">{{f.question_date}}</time><br>
+        Ответ: {{f.answer}}<br>
+        Дата ответа: <time datetime="{{f.answer_date|date:'Y-m-d'}}">{{f.answer_date}}</time><br>
+    </details>
         <hr>
     {% endfor %}
 {% endblock %}

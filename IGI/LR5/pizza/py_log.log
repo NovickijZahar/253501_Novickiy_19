@@ -1,5 +1,8 @@
-2024-07-09 19:09:35,783 INFO Visited main page
-2024-07-09 19:09:45,258 INFO Visited main page
-2024-07-09 19:10:30,738 INFO Visited main page
-2024-07-09 19:10:45,872 INFO Visited main page
-2024-07-09 19:10:48,351 INFO Visited contacts page
+2024-09-18 02:52:42,424 INFO Visited coupons page
+2024-09-18 02:52:56,137 INFO Visited coupons page
+2024-09-18 02:52:56,641 INFO Visited coupons page
+2024-09-18 02:53:02,212 WARNING Not Found: /admins/coupons
+2024-09-18 02:53:05,875 WARNING Not Found: /admin/coupons
+2024-09-18 02:53:40,775 INFO Visited coupons page
+2024-09-18 02:54:36,873 INFO Visited coupons page
+2024-09-18 02:54:37,649 INFO Visited coupons page

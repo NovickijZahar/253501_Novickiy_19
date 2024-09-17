@@ -1,0 +1,68 @@
+{% extends 'main/layout.html' %}
+
+
+{% block title %}
+    О компании
+{% endblock %}
+
+{% block body %}
+    <h1>О компании</h1>
+{% endblock %}
+
+{% block info %}
+    <iframe width="700" height="500" src="https://www.youtube.com/embed/wX8foM1z7S0?autoplay=1&mute=1&" title="Making a pizza - reels" frameborder="0" allowfullscreen></iframe>
+    <figure>
+        {% load static %}
+        <picture>
+            <source srcset="{% static 'images/big_logo.jpg' %}" media="(min-width:800px)" width="650">
+            <img src="{% static 'images/logo.jpg' %}" width="200" height="200" >
+        </picture>
+        <figcaption>Наш логотип<br>
+            <a href="{% static 'images/big_logo.jpg' %}" download type="jpg">Скачать логотип</a>
+        </figcaption>
+    </figure>
+    {% include 'main/certifiacate.html' %}
+    <a href="{% static 'documents/certifiacate.html' %}" download hreflang="ru" type="html">Скачать сертификат</a>
+    <hr>
+    <section id="reasons">
+        <h2>Почему выбирают нас</h2>
+        <dl>
+            <dt>Уникальность</dt>
+            <dd>Индивидуальный подход к каждому блюду</dd>
+            <dt>Качество</dt>
+            <dd>Используем только лучшие ингредиенты</dd>
+            <dt>Страсть</dt>
+            <dd>Вкладываем в каждую пиццу частичку нашей страсти</dd>
+            <dt>Искусство</dt>
+            <dd>Каждая пицца - настоящее кулинарное произведение искусства</dd>
+            <dt>Впечатления</dt>
+            <dd>Мы не просто готовим еду, мы создаем незабываемые впечатления</dd>
+            <dt>Долгосрочные отношения</dt>
+            <dd>Наш вкус останется в ваших сердцах на долгие годы</dd>
+            <dt>Широкий выбор</dt>
+            <dd>У нас большой ассортимент пицц с различными ингредиентами</dd>
+            <dt>Быстрая доставка</dt>
+            <dd>Мы гарантируем быструю и своевременную доставку</dd>
+            <dt>Доступные цены</dt>
+            <dd>Мы предлагаем вкусные пиццы по доступным ценам</dd>
+        </dl>
+    </section>
+    <hr>
+    <section id="quote">
+        <h2>Цитаты</h2>
+        <blockquote cite="http://poe.com">
+            <p itemprop="quote">
+                В каждом кусочке нашей пиццы - вкус и тепло,<br>
+                которые мы с удовольствием доставляем каждому клиенту.<br>
+                Наша кухня - это наше искусство, а каждая пицца - наш шедевр,<br>
+                созданный для удовольствия вашего вкуса.
+            </p>
+            <p>-Директор {{ director }}, <cite>Открытие пиццерии</cite></p>
+        </blockquote>
+        <hr>
+    </section>
+    <section id="music">
+        <h2>Просто хорошая музыка</h2>
+        <audio src="{% static 'audios/Memory Reboot.mp3' %}" controls>Просто хорошая музыка</audio>
+    </section>
+{% endblock %}

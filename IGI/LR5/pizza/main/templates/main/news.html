@@ -11,7 +11,7 @@
 
 {% block info %}
     {% for n in ns %}
-    <img src="{{ n.image.url }}" height="250" width="300">
+        <img src="{{ n.image.url }}" height="250" width="300">
         <b>{{n.title}}</b><br>
         Опубликовано: {{n.publication_date}}<br>
         <a href="{% url 'news_detail' n.id %}">Подробнее</a><br>

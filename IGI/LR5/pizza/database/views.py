@@ -86,7 +86,6 @@ def index(request):
             pizzas = pizzas.order_by('-price')
         case '4':
             pizzas = pizzas.order_by('price')
-    print(pizzas)
     return render(request, 'database/index.html', {'pizzas': pizzas})
 
 @user_passes_test(admin_check)

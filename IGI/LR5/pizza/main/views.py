@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from . forms import RegisterUserForm
 from database.models import *
+from django.contrib.auth.hashers import make_password
 import calendar
 import datetime
 from django.utils.timezone import get_current_timezone
@@ -13,7 +14,8 @@ import translators as ts
 
 
 def index(request):
-    ns = News.objects.order_by('-publication_date')
+    n = News.objects.first()
+    partners = Partners.objects.all()
     cal = calendar.TextCalendar()
     current_date = datetime.datetime.now()
     if 1 < current_date.month < 12:
@@ -32,7 +34,8 @@ def index(request):
         'months': [month_calendar1, month_calendar2, month_calendar3],
         'current_date': datetime.datetime.now(),
         'timezone': get_current_timezone(),
-        'ns': ns
+        'n': n,
+        'partners': partners
     }
 
     logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
@@ -46,25 +49,27 @@ def coupons(request):
     logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                     format="%(asctime)s %(levelname)s %(message)s")
     logging.info('Visited coupons page')
-    cps = Coupons.objects.all()
-    return render(request, 'main/coupons.html', {'cps': cps})
+    expired_cps = Coupons.objects.filter(end_date__lt=datetime.datetime.now())
+    cps = Coupons.objects.filter(end_date__gte=datetime.datetime.now())
+    return render(request, 'main/coupons.html', {'cps': cps, 'expired_cps': expired_cps})
 
 
 def register(request):
+    error = ""
+    print(request.POST)
     if request.method == 'POST':
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])
-            user.save()
-            return redirect('home')
-    form = RegisterUserForm()
+        login = request.POST.get('login')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 != password2:
+            error = 'Пароли не совпадают'
+        elif User.objects.filter(username=login).exists():
+            error = 'Такой пользователь уже существует'
+        else:
+            User.objects.create(username=login, password=make_password(password1))
+            return redirect('login')
+    return render(request, 'registration/register.html', {'error': error}) 
 
-    logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
-                    format="%(asctime)s %(levelname)s %(message)s")
-    logging.info('Visited register page')
-
-    return render(request, 'registration/register.html', {'form': form})
 
 
 def contacts(request):
@@ -163,8 +168,8 @@ def api1(request):
         data = response.json()
         data2 = []
         for d in data:
-            data2.append({'setup': ts.translate_text(d['setup'], to_language='ru'), 
-                          'punchline': ts.translate_text(d['punchline'], to_language='ru')})
+            data2.append({'setup': d['setup'], 
+                          'punchline': d['punchline']})
 
         logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                         format="%(asctime)s %(levelname)s %(message)s")
@@ -207,8 +212,8 @@ def api2(request):
     
 
 def faq(request):
-    un_faqs = FAQs.objects.filter(is_complete=False)
-    faqs = FAQs.objects.filter(is_complete=True)
+    un_faqs = FAQs.objects.filter(is_complete=False).order_by('-question_date')
+    faqs = FAQs.objects.filter(is_complete=True).order_by('-question_date')
     if request.method == 'POST':
         action = request.POST.get('action')
         if action == 'do_question':
@@ -230,3 +235,8 @@ def faq(request):
             f.save()
             
     return render(request, 'main/faq.html', {'faqs': faqs, 'un_faqs': un_faqs})
+
+
+def about(request):
+    director = Contacts.objects.get(work='Директор')
+    return render(request, 'main/about.html', {"director": director})

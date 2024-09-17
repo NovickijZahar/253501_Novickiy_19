@@ -5,26 +5,18 @@ from django.contrib.auth.forms import AuthenticationForm
 class RegisterUserForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'first_name', 'last_name', 'password']
+        fields = ['username', 'password']
         widgets = {
             'username': forms.TextInput(attrs={
                 'placeholder': 'Логин'
             }),
-            'email': forms.EmailInput(), 
-            'first_name': forms.TextInput(attrs={
-                'placeholder': 'Имя'
-            }), 
-            'last_name': forms.TextInput(attrs={
-                'placeholder': 'Фамилия'
-            }), 
-            'password': forms.PasswordInput(),
-            'password2': forms.PasswordInput()
+            'password': forms.PasswordInput()
         }
     def clean_password(self):
         return self.cleaned_data['password']
         
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        if get_user_model().objects.filter(email='email').exists():
-            raise forms.ValidationError('Пользователь с такой почтой уже существует')
-        return email
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if get_user_model().objects.filter(username='username').exists():
+            raise forms.ValidationError('Пользователь с таким логином уже существует')
+        return username

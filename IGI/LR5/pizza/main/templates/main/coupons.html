@@ -10,7 +10,35 @@
 {% endblock %}
 
 {% block info %}
-    {% for c in cps%}
-        {{c}}<br>
-    {% endfor %}
+    <h2>Текущие купоны</h2>
+    <table border>
+        <th id="discount">Скида</th>
+        <th id="start_date">Дата начала действия</th>
+        <th id="end_date">Дата окончания действия</th>
+        <th id="coupon">Купон</th>
+        {% for c in cps %}
+            <tr>
+                <td headers="discount">{{c.discount}}</td> 
+                <td headers="start_date"><time datetime="{{c.start_date|date:'Y-m-d' }}">{{c.start_date}}</time></td> 
+                <td headers="end_date"><time datetime="{{c.end_date|date:'Y-m-d' }}">{{c.end_date}}</time></td>
+                <td headers="coupon">{{c.coupon}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <h2>Истекшие купоны</h2>
+    <table border>
+        <th id="e_discount">Скида</th>
+        <th id="e_start_date">Дата начала действия</th>
+        <th id="e_end_date">Дата окончания действия</th>
+        <th id="e_coupon">Купон</th>
+        {% for c in expired_cps %}
+            <tr>
+                <td headers="e_discount">{{c.discount}}</td> 
+                <td headers="e_start_date"><time datetime="{{c.start_date|date:'Y-m-d' }}">{{c.start_date}}</time></td> 
+                <td headers="e_end_date"><time datetime="{{c.end_date|date:'Y-m-d' }}">{{c.end_date}}</time></td>
+                <td headers="e_coupon">{{c.coupon}}</td>
+            </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

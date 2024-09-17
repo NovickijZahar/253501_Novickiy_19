@@ -24,14 +24,14 @@
     </form>
         {% for piz in pizzas %}
             <div>
-                <h3>{{piz.name}}</h3>
-                {{piz.price}} BYN<br>
-                <img src="{{ piz.image.url }}" height="200" width="200"><br>
-                {% for ing in piz.ingredients.all %}
-                    {{ing.name}}
-                {% endfor %}
-                <br>
-                <a href="{% url 'pizza_detail' piz.id %}">Подробнее</a><br>
+                <figure>
+                    <figcaption>
+                        <h3>{{piz.name}}</h3>
+                        {{piz.price}} BYN<br>
+                    </figcaption>
+                        <img src="{{ piz.image.url }}" height="200" width="200"><br>
+                </figure>
+                    <a href="{% url 'pizza_detail' piz.id %}">Подробнее</a><br>
                 <form method="post" action="{% url 'add_to_cart' %}">
                     {% csrf_token %}
                     <input type="hidden" name="pizza_id" value="{{ piz.id }}">

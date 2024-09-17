@@ -15,8 +15,8 @@
         <img src="{{ ser.image.url }}" height="250" width="300">
         {{ser}}<br>
         Должность: {{ser.work|lower}}<br>
-        Номерт телефона: {{ser.phone_number}}<br>
-        Почта: {{ser.email}}<br>
+        Номерт телефона: <a href="tel:{{c.phone_number}}">{{ser.phone_number}}</a><br>
+        Почта: <a href="mailto:{{ser.email}}">{{ser.email}}</a><br>
         <hr>
     {% endif %}
     {% for v in vacs %}

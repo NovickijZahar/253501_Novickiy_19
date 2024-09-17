@@ -25,10 +25,12 @@
         <b>Пока нет отзывов</b><br><hr>
     {% endif %}
     {% for r in revs %}
-    <b>Пользователь:</b> {{r.user}}<br>
-    <b>Оценка:</b> {{r.rating}}/5<br>
-    <b>Опубликовано:</b> {{r.date}}<br>
-    <b>Комментарии:</b> {{r.content}}
+    <article>
+        <b>Пользователь:</b> {{r.user}}<br>
+        <b>Оценка:</b> {{r.rating}}/5<br>
+        <b>Опубликовано:</b> {{r.date}}<br>
+        <b>Комментарии:</b> {{r.content}}
+    </article>
     <hr>
     {% endfor %}
 {% endblock %}
