@@ -10,8 +10,8 @@
 {% endblock %}
 
 {% block info %}
-    <h2>Текущие купоны</h2>
     <table border>
+        <caption><strong>Текущие купоны</strong></caption>
         <th id="discount">Скида</th>
         <th id="start_date">Дата начала действия</th>
         <th id="end_date">Дата окончания действия</th>
@@ -26,8 +26,8 @@
         {% endfor %}
     </table>
     <hr>
-    <h2>Истекшие купоны</h2>
     <table border>
+        <caption><strong>Истекшие купоны</strong></caption>
         <th id="e_discount">Скида</th>
         <th id="e_start_date">Дата начала действия</th>
         <th id="e_end_date">Дата окончания действия</th>

@@ -17,6 +17,7 @@ def admin_check(user):
 
 class CreateOrderView(View):
     def post(self, request):
+        count = (request.POST.get('count'))
         if not request.user.is_authenticated:
             return redirect('/accounts/login')
         pizza_id = request.POST.get('pizza_id')
@@ -25,9 +26,9 @@ class CreateOrderView(View):
         if Carts.objects.filter(user=user).exists():
             cart = Carts.objects.get(user=user)
             if str(pizza.id) in cart.pizzas:
-                cart.pizzas[str(pizza.id)] += 1
+                cart.pizzas[str(pizza.id)] += int(count)
             else:
-                cart.pizzas[str(pizza.id)] = 1
+                cart.pizzas[str(pizza.id)] = int(count)
         else:
             cart = Carts.objects.create(user=user)
             cart.pizzas = {str(pizza.id): 1}
