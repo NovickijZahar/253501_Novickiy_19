@@ -5,25 +5,70 @@
     О компании
 {% endblock %}
 
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>О компании</h1>
 {% endblock %}
 
 {% block info %}
+    <h2>Видео</h2>
     <iframe width="700" height="500" src="https://www.youtube.com/embed/wX8foM1z7S0?autoplay=1&mute=1&" title="Making a pizza - reels" frameborder="0" allowfullscreen></iframe>
+    
+    <hr>
+
+    <h2>Логотип</h2>
     <figure>
         {% load static %}
-        <picture>
-            <source srcset="{% static 'images/big_logo.jpg' %}" media="(min-width:800px)" width="650">
+        <picture id="big_logo">
+            <source srcset="{% static 'images/big_logo.jpg' %}" media="(min-width:800px)" width="450">
             <img src="{% static 'images/logo.jpg' %}" width="200" height="200" >
         </picture>
         <figcaption>Наш логотип<br>
             <a href="{% static 'images/big_logo.jpg' %}" download type="jpg">Скачать логотип</a>
         </figcaption>
     </figure>
-    {% include 'main/certifiacate.html' %}
-    <a href="{% static 'documents/certifiacate.html' %}" download hreflang="ru" type="html">Скачать сертификат</a>
+    
     <hr>
+
+    <h2>Сертификат</h2>
+    <div id="certificate">
+        <div class="top">
+            <p><strong>Единый торговый реестр</strong></p>
+            <p><strong>Свидетельство</strong></p>
+            <p><strong>о внесении сведений</strong></p>
+        </div>
+        <div class="left_center">
+            <p><small>г. <span itemprop="city" itemtype="https://schema.org/City">Минск</span></small></p>
+        </div>
+        <div class="right_center">
+            <p><time datetime="2014-01-12">12 января 2014<small></small></time></p>
+        </div>
+        <div class="center">
+            <p><strong>Общество с ограниченной ответственностью &laquo;PizzaHub&raquo;</strong></p>
+            <p>(ИНН 84685968595)</p>
+            <p>Реестровый номер: <span itemprop="id_number" itemtype="https://schema.org/Number">5532</span></p>
+        </div>
+        <div class="bottom1">
+            <p><small><span itemprop="director" itemtype="https://schema.org/jobTitle">Арсений Николаевич</span></small></p>
+            <p><small>Директор Ассоциации <span itemprop="organisation" itemtype="https://schema.org/Organization">"ОБЩЕПИТ"</span></small></p>
+        </div>
+        <hr>
+        <div class="bottom3">
+            <img src="{% static 'images/back_full.png' %}" alt="Логотип организации" width="100px">
+        </div>
+        <div class="bottom2">
+            <p dir="rtl">Ассоциация "Гастрономическая Сертификационная Организация"; 1010000 г. Минск, ул. Карла Маркса, дом 42</p>
+            <p>Тел. <a href="tel:+375333769165">+375(33)376-91-65</a></p> 
+            <p>e-mail: <a href="mailto:pizzahub@example.com">pizzahub@example.com</a></p>
+        </div>
+    </div>
+
+    <hr>
+
     <section id="reasons">
         <h2>Почему выбирают нас</h2>
         <dl>
@@ -59,17 +104,13 @@
             </p>
             <p>-Директор {{ director }}, <cite>Открытие пиццерии</cite></p>
         </blockquote>
-        <q cite="https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%86%D1%86%D0%B0">Пицца — это не только еда, это целая философия жизни.</q>
+        <div lang="en">
+            <q cite="https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%86%D1%86%D0%B0">Пицца — это не только еда, это целая философия жизни.</q>
+        </div>
+        <div lang="ru">
+            <q cite="https://ru.wikipedia.org/wiki/%D0%9F%D0%B8%D1%86%D1%86%D0%B0">Pizza is not only food, it is a whole philosophy of life</q>
+        </div>
         <hr>
-    </section>
-    <section id="code">
-        <h2>Проверка на статус админа</h2>
-        <pre>
-            <code>
-def admin_check(user):
-    return user.is_superuser
-            </code>
-        </pre>
     </section>
     <section id="music">
         <h2>Просто хорошая музыка</h2>

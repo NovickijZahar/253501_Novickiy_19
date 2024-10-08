@@ -5,6 +5,11 @@
     Отзывы
 {% endblock %}
 
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>Отзывы</h1>
 {% endblock %}
@@ -13,7 +18,7 @@
     <form method="post" action="{% url 'reviews' %}">
         {% csrf_token %}
         <label for="rating">Оценка(1-5):</label>
-        <input type="text" name="rating" id="rating" pattern="[1-5]" required><br>
+        <input type="number" name="rating" id="rating" min="1" max="5" required><br>
         <label for="content">Комментарии:</label><br>
         <textarea type="text" name="content" id="content"></textarea><br>
         <button type="submit" name="action" value="leave_review">Оставить отзыв</button>

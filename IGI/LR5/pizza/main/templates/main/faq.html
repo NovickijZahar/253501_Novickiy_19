@@ -5,6 +5,11 @@
     FAQ
 {% endblock %}
 
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>FAQ</h1>
 {% endblock %}
@@ -16,7 +21,6 @@
         <textarea type="text" name="question" id="content"></textarea><br>
         <button type="submit" name="action" value="do_question">Задать вопрос</button>
     </form>
-    <hr><hr>
     {% if user.is_superuser %}
     {% for f in un_faqs %}
         Дата вопроса: {{f.question_date}}<br>
@@ -30,7 +34,7 @@
         </form>
         {% endfor %}
     {% if un_faqs %}
-        <hr><hr>
+        Пока нет вопросов
     {% endif %}
     {% endif %}
     {% for f in faqs %}
@@ -38,11 +42,11 @@
         <summary>
             {{f.question}}
         </summary>
+        <hr>
         Вопрос: {{f.question}}<br>
         Дата вопроса: <time datetime="{{f.question_date|date:'Y-m-d'}}">{{f.question_date}}</time><br>
         Ответ: {{f.answer}}<br>
         Дата ответа: <time datetime="{{f.answer_date|date:'Y-m-d'}}">{{f.answer_date}}</time><br>
     </details>
-        <hr>
     {% endfor %}
 {% endblock %}

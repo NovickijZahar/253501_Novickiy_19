@@ -1,88 +1,176 @@
-.navbar {
-    background-color:blanchedalmond; /* Цвет фона панели */
-    position: fixed; /* Фиксированное позиционирование */
-    top: 0; /* Расположение вверху экрана */
-    left: 0;
-    width: 100%; /* Ширина панели на всю ширину экрана */
-    z-index: 100; /* Высокий z-index для отображения панели поверх остального содержимого */
+@font-face {
+    font-family: "Bebes";
+    src: url("http://localhost:8000/static/font/BebasNeue Book.ttf") format("truetype");
+    font-style: normal; 
+    font-weight: normal; 
 }
 
-.navbar-list {
-    list-style-type: none; /* Убираем маркеры списка */
-    margin: 0; /* Убираем отступы */
-    padding: 0;
-    align-items: center;
-    font-size: large;
-    display: flex; /* Используем flexbox для автоматического переноса элементов */
-    flex-wrap: wrap; /* Разрешаем перенос элементов на следующую строку */
-}
-
-.navbar-item {
-    display: inline-block; /* Отображение в одну строку */
-    margin-right: 10px; /* Отступ между элементами */
-    white-space: nowrap; /* Запрещаем перенос текста на следующую строку */
-}
-
-.navbar-item a {
-    color: #333; /* Цвет ссылок */
-    text-decoration: none; /* Убираем подчеркивание */
-}
-
-.navbar-item a:hover {
-    text-decoration: underline; /* Убираем подчеркивание при наведении */
-}
-
-.navbar-item-right {
-    margin-left: auto;
-    margin-right: 20px;
-}
-
-.navbar-item-right a {
-    margin-left: 10px; /* Увеличение отступа между элементами справа */
-}
-
-.logout {
-    display: inline-block;
-    font-size: 16px;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 5px;
-    background-color: black;
-    color: #fff;
-    border: none;
-    transition: background-color 0.3s ease;
-    margin-right: 20px;
-}
-
-.logout:hover {
-    background-color: red;
-}
-
-.logout:active {
-    background-color: red;
-}
 
 body {
-    margin-top: 70px;
-}
-
-img{
+    padding: 0;
     margin: 0;
-    display: block;
+    background-color:#FABC3F;
+    font-family: Arial, sans-serif;
 }
 
-h1{
-    margin-bottom: 10px;
+@media screen and (width < 800px) {
+    body{
+        padding: 0;
+        margin: 0;
+        background-color: #b9a616;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
 }
 
-h3{
-    margin-top: 5px;
-    margin-bottom: 0px;
+nav {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    background-color: #E85C0D;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
-h4{
-    margin-top: 5px;
-    margin-bottom: 0px;
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+nav ul.right{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+nav li {
+    padding: 10px;
+}
+
+nav li a,
+nav li a:visited,
+nav li a:hover{
+    font-size: larger;
+    text-decoration: none;
+    color: #821131;
+    position: relative;
+}
+
+#logotype:hover::after {
+    width: 0%;
+}
+
+#logotype:active::before {
+    width: 0%;
+}
+
+nav a::after,
+nav a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #821131;
+    bottom: 0;
+    left: 0;
+    transition-duration: 0.3s;
+}
+
+nav a::after {
+    bottom: 0;
+    left: 0;
+}
+
+nav a::before {
+    top: 0;
+    right: 0;
+}
+
+nav a:hover::after,
+nav a:active::before {
+    width: 100%;   
+}
+
+
+aside {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 150px;
+    height: calc(100% - 80px);
+    background-color: #b44709;
+    padding: 0px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+}
+
+
+aside ul {
+    margin: 20px 0 0 10px;
+    padding: 0;
+    list-style-type: none;
+}
+
+aside li a,
+aside li a:visited,
+aside li a:hover{
+    margin-bottom: 100px;
+    position: relative;
+    font-size: larger;
+    text-decoration: none;
+    color: #201e1e;
+}
+
+aside a::after,
+aside a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #201e1e;
+    transition-duration: 0.3s;
+}
+
+aside a::after {
+    bottom: 0;
+    left: 0;
+}
+
+aside a::before {
+    top: 0;
+    right: 0;
+}
+
+aside a:hover::after {
+    width: 100%;
+}
+
+aside a:active::before{
+    width: 100%;
+}
+
+main {
+    margin-left: 210px;
+    padding: 20px;
+}
+
+header {
+    margin-left: 210px; 
+    padding-top: 80px; 
+}
+
+footer {
+    margin-left: 210px; 
+    padding: 10px;
+    text-align: center;
 }
 
 .calendar-container {
@@ -92,4 +180,43 @@ h4{
 
 .calendar {
     margin-right: 10px;
+}
+
+a{
+    color: black;
+    text-decoration:none;
+    color: red;
+}
+
+
+a:visited{
+    color: rgb(124, 32, 9);
+}
+
+a:hover{
+    color: rgb(246, 111, 134);
+}
+
+a:active{
+    color:rgb(250, 76, 105);
+}
+
+
+li>form[method="post"]>button{
+    border-radius: 20%;
+    padding: 10px;
+    font-size: larger;
+    box-shadow: 1px 1px 1px yellow;
+    background-color: red;
+    transition-duration: 0.3s;
+}
+
+button{
+    cursor: pointer;
+    font-size: larger;
+}
+
+button:hover{
+    background-color: orange;
+    color: white;
 }

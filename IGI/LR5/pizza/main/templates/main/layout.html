@@ -9,57 +9,53 @@
     {% load static %}
     <link rel="shortcut icon" href="{% static 'images/logo.jpg' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    {% block styles %}{% endblock %}
     <base target="_self">
 </head>
 <body>
-    <nav class="navbar">
-        <ul class="navbar-list">
-            <li class="navbar-item"><a href="{% url 'home' %}">
+    <nav >
+        <ul>
+            <li><a id="logotype" href="{% url 'home' %}">
                 <img src="{% static 'images/logo.jpg' %}" width="60" height="60" alt="Логотип"></a></li>
-                <li class="navbar-item"><a href="{% url 'database_home' %}" class="abc">Ассортимент</a></li>
-                <li class="navbar-item"><a href="{% url 'coupons' %}">Купоны</a></li>
-            <li class="navbar-item"><a href="{% url 'contacts' %}" class="abc">Контакты</a></li>
-            <li class="navbar-item"><a href="{% url 'vacancies' %}" class="abc">Вакансии</a></li>
-            <li class="navbar-item"><a href="{% url 'news' %}" class="abc">Новости</a></li>
-            <li class="navbar-item"><a href="{% url 'reviews' %}" class="abc">Отзывы</a></li>
-            <li class="navbar-item"><a href="{% url 'privacy' %}" class="abc">Политика конфиденциальности</a></li>
-            <li class="navbar-item"><a href="{% url 'api1' %}" class="abc">Api1</a></li>
-            <li class="navbar-item"><a href="{% url 'api2' %}" class="abc">Api2</a></li>
-            <li class="navbar-item"><a href="{% url 'faq' %}" class="abc">FAQ</a></li>
-            <li class="navbar-item"><a href="{% url 'about' %}" class="abc">О компании</a></li>
+                <li><a href="{% url 'database_home' %}" >Ассортимент</a></li>
+                <li><a href="{% url 'coupons' %}">Купоны</a></li>
+            <li><a href="{% url 'contacts' %}" >Контакты</a></li>
+            <li><a href="{% url 'vacancies' %}" >Вакансии</a></li>
+            <li><a href="{% url 'privacy' %}" >Политика конфиденциальности</a></li>
             {% if user.is_superuser %}
-                <li class="navbar-item"><a href="{% url 'create_ingredient' %}">Add ingredient</a></li>
-                <li class="navbar-item"><a href="{% url 'create_pizza' %}">Add pizza</a></li>
+                <li><a href="{% url 'create_ingredient' %}">Создать ингредиент</a></li>
+                <li><a href="{% url 'create_pizza' %}">Создать пиццу</a></li>
             {% endif %}
             {% if user.is_staff %}
-                <li class="navbar-item"><a href="{% url 'active_orders' %}">Активные заказы</a></li>
+                <li ><a href="{% url 'active_orders' %}">Активные заказы</a></li>
             {% endif %}
+            </ul>
+            <ul class="right">
             {% if user.is_authenticated %}
-                <li class="navbar-item-right navbar-item">
-                    <a href="#">{{user.get_username}}</a>
-                    <a href="{% url 'my_orders' %}">Заказы</a>
-                    <a href="{% url 'cart_view' %}">Корзина</a>
+                <li><a href="#">{{user.get_username}}</a></li>
+                <li><a href="{% url 'my_orders' %}">Заказы</a></li>
+                <li><a href="{% url 'cart_view' %}">Корзина</a></li>
                 <li>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
-                        <button type="submit" class="logout">Выйти</button>
+                        <button type="submit" >Выйти</button>
                     </form>
                 </li>
-            {% else %}
-                <li class="navbar-item-right navbar-item">
-                    <a href="{% url 'login' %}">Войти</a>
-                    <a href="{% url 'register' %}">Зарегистрироваться</a>
-                </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Войти</a></li>
+                <li><a href="{% url 'register' %}">Зарегистрироваться</a></li>
             {% endif %}
-        </ul>
+            </ul>
     </nav>
-    <br>
     <aside>
-        <ol>
-            <li><a href="#header">Шапка</a></li>
-            <li><a href="#main">Содержимое</a></li>
-            <li><a href="#footer">Подвал</a></li>
-        </ol>
+        <ul>
+            <li><a href="{% url 'about' %}">О компании</a></li>
+            <li><a href="{% url 'news' %}">Новости</a></li>
+            <li><a href="{% url 'reviews' %}">Отзывы</a></li>
+            <li><a href="{% url 'api1' %}">Api1</a></li>
+            <li><a href="{% url 'api2' %}">Api2</a></li>
+            <li><a href="{% url 'faq' %}">FAQ</a></li>
+        </ul>
     </aside>
     <header id="header">
         {% block body %}
@@ -71,7 +67,7 @@
     </main>
     <hr size="10px" color="yellow">
     <footer id="footer">
-        <p dir="rtl">PizzaHub <a href="#header">Наверх</a></p>
+        <p>PizzaHub <a href="#header">Наверх</a></p>
     </footer>
 </body>
 </html>

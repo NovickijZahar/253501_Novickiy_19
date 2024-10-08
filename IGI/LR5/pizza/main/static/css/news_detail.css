@@ -1,0 +1,20 @@
+.news-container {
+    column-count: 3;
+    column-rule: 1px dashed black;
+    overflow: hidden;
+}
+
+.news-image {
+    float: left; 
+    margin-right: 15px;
+}
+
+.publicated_date{
+    font-size: smaller;
+    font-style: italic;
+}
+
+.content{
+    white-space: pre-wrap;
+    text-indent: 1em;
+}

@@ -49,8 +49,10 @@ def coupons(request):
     logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                     format="%(asctime)s %(levelname)s %(message)s")
     logging.info('Visited coupons page')
-    expired_cps = Coupons.objects.filter(end_date__lt=datetime.datetime.now())
-    cps = Coupons.objects.filter(end_date__gte=datetime.datetime.now())
+    expired_cps = (Coupons.objects.filter(end_date__lt=datetime.datetime.now()))
+    cps = list(Coupons.objects.filter(end_date__gte=datetime.datetime.now()))
+    no_end_cps = list(Coupons.objects.filter(end_date=None))
+    cps.extend(no_end_cps)
     return render(request, 'main/coupons.html', {'cps': cps, 'expired_cps': expired_cps})
 
 

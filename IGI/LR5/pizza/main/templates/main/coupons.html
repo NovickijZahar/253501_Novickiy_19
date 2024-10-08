@@ -5,12 +5,17 @@
     Купоны
 {% endblock %}
 
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/coupons.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>Купоны</h1>
 {% endblock %}
 
 {% block info %}
-    <table border>
+    <table>
         <caption><strong>Текущие купоны</strong></caption>
         <th id="discount">Скида</th>
         <th id="start_date">Дата начала действия</th>
@@ -20,13 +25,13 @@
             <tr>
                 <td headers="discount">{{c.discount}}</td> 
                 <td headers="start_date"><time datetime="{{c.start_date|date:'Y-m-d' }}">{{c.start_date}}</time></td> 
-                <td headers="end_date"><time datetime="{{c.end_date|date:'Y-m-d' }}">{{c.end_date}}</time></td>
+                <td headers="end_date">{% if c.end_date %}<time datetime="{{c.end_date|date:'Y-m-d' }}">{{c.end_date}}</time>{% endif %}</td>
                 <td headers="coupon">{{c.coupon}}</td>
             </tr>
         {% endfor %}
     </table>
     <hr>
-    <table border>
+    <table>
         <caption><strong>Истекшие купоны</strong></caption>
         <th id="e_discount">Скида</th>
         <th id="e_start_date">Дата начала действия</th>
@@ -42,3 +47,5 @@
         {% endfor %}
     </table>
 {% endblock %}
+
+

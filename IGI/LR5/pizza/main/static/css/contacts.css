@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 10px;
+    gap: 30px;
+}
+
+.item{
+    background-color: burlywood;
+    border: 3px dotted black;
+    gap: 1px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 300px;
+    text-wrap: wrap;
+}
+
+
+p{
+    margin: 0;
+}

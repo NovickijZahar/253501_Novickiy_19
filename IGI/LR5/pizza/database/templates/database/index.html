@@ -1,7 +1,12 @@
 {% extends 'main/layout.html' %}
 
 {% block title %}
-    База данных
+    Ассортимент
+{% endblock %}
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/pizzas.css' %}" type="text/css">
 {% endblock %}
 
 {% block body %}
@@ -22,27 +27,28 @@
         <br>
         <button type="submit">Применить фильтры и сортировку</button>
     </form>
+        <div class="container">
         {% for piz in pizzas %}
-            <div>
+        <a href="{% url 'pizza_detail' piz.id %}">
+            <div class="card">
                 <figure>
+                    <img src="{{ piz.image.url }}" height="200" width="200"><br>
                     <figcaption>
                         <h3>{{piz.name}}</h3>
                         {{piz.price}} BYN<br>
                     </figcaption>
-                        <img src="{{ piz.image.url }}" height="200" width="200"><br>
                 </figure>
-                    <a href="{% url 'pizza_detail' piz.id %}">Подробнее</a><br>
+                    
                 <form method="post" action="{% url 'add_to_cart' %}">
                     {% csrf_token %}
                     <input type="hidden" name="pizza_id" value="{{ piz.id }}">
                     <input type="numbrt" hidden name="count" value="1">
                     <button type="submit">Добавить в корзину</button>
                 </form>
-                <hr>
             </div>
+        </a>
             {% endfor %}
-        <img src="/media/plots/plot1.png"><hr>
-        <img src="/media/plots/plot2.png">
+        </div>
     {% else %}
             <h3>Нет пицц</h3>
     {% endif %}

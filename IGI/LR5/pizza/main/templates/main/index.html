@@ -4,21 +4,29 @@
     Главная
 {% endblock %}
 
+
+{% block styles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>Главная</h1>
 {% endblock %}
 
 {% block info %}
     <h2>Добро пожаловать на PizzaHub</h2>
-    <p><dfn title="PizzaHub">PizzaHub</dfn> &mdash; это не просто пиццерия, 
+    <p class="def"><dfn title="PizzaHub">PizzaHub</dfn> &mdash; это не просто пиццерия, 
         это место, где каждый кусочек пиццы становится настоящим кулинарным произведением искусства.</p>
     Сегодня: <time datetime="{{current_date.year}}-{{current_date.month}}-{{current_date.day}}">
         {{current_date.day}}.{% if current_date.month < 10 %}0{% endif %}{{current_date.month}}.{{current_date.year}}</time><br>
     Время: <time datetime="{{current_date.time}}"> {{current_date.time}}</time><br>
     Временная зона: {{timezone}}
+    <div class="month_container">
     {% for month in months %}
         <pre>{{ month }}</pre>
     {% endfor %}
+    </div>
     <section id="map">
         <h2>Как к нам добраться</h2>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.902285290861!2d27.55807220091548!3d53.89612636041756!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcfc464205889%3A0x608254b4a992237d!2zMy3RjyDQs9C-0YDQvtC00YHQutCw0Y8g0LrQu9C40L3QuNGH0LXRgdC60LDRjyDQsdC-0LvRjNC90LjRhtCwINC40LzQtdC90Lgg0JUu0JIuINCa0LvRg9C80L7QstCw!5e0!3m2!1sru!2sby!4v1726614020317!5m2!1sru!2sby" 
@@ -27,42 +35,91 @@
     <section id="banners">
         <h3>Наши баннеры</h3>
         {% load static %}
-        <table border>
-            <tr>
-                <td>
-                    <img src="{% static 'images/banner1.jfif' %}" width="300">
-                </td>
-                <td>
-                    <img src="{% static 'images/banner2.jpg' %}" width="300">
-                </td>
-            </tr>
-            <tr>
-                <td><a href="{% static 'images/banner1.jfif' %}" download="">Скачать баннер</a></td>
-                <td><a href="{% static 'images/banner2.jpg' %}" download="">Скачать баннер</a></td>
-            </tr>
-        </table>
+        <div class="container">
+            <div class="item">
+                <img src="{% static 'images/banner1.jfif' %}" width="300">
+                <a href="{% static 'images/banner1.jfif' %}" download="">Скачать баннер</a>
+            </div>
+            <div class="item">
+                <img src="{% static 'images/banner2.jpg' %}" width="300">
+                <a href="{% static 'images/banner2.jpg' %}" download="">Скачать баннер</a>
+            </div>
+        </div>
     </section>
     <section id="partners">
         <h3>Наши партнеры</h3>
-        {% for partner in partners %}
-            <a href="{{ partner.url }}" target="_blank">
-                <figure>
-                    <img src="{{ partner.logo.url }}" height="300" width="300" alt="Логотип партнера">
-                    <figcaption>
-                        <p>{{partner.name}}</p>
-                    </figcaption>
-                </figure>
-            </a>
-        {% endfor %}
+        <div class="container">
+            {% for partner in partners %}
+            <div class="item">
+                <a href="{{ partner.url }}" target="_blank">
+                    <figure>
+                        <img src="{{ partner.logo.url }}" height="300" width="300" alt="Логотип партнера">
+                        <figcaption>
+                            <p>{{partner.name}}</p>
+                        </figcaption>
+                    </figure>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
     </section>
-    <hr>
     <section id="last_news">
-        <h2>Последние новости</h2>
-        <img src="{{ n.image.url }}" height="250" width="300" alt="Изображение новости">
-        <b>{{n.title}}</b><br>
-        Опубликовано: {{n.publication_date}}<br>
-        <a href="{% url 'news_detail' n.id %}">Подробнее</a><br>
-        <a href="{% url 'news' %}">Все новости</a>
-        <hr>
+        <div class="container">
+            <div class="item">
+                <h2>Последние новости</h2>
+                <img src="{{ n.image.url }}" height="250" width="300" alt="Изображение новости">
+                <b>{{n.title}}</b><br>
+                Опубликовано: {{n.publication_date}}<br>
+                <a href="{% url 'news_detail' n.id %}">Подробнее</a><br>
+                <a href="{% url 'news' %}">Все новости</a>
+            </div>
+        </div>
     </section>
+
+    <div class="container">
+        <div class="loader"></div>
+        <svg height="500" width="500" style="transform: rotateX(60deg); overflow: visible">
+            <path d="M200 200 L200 400 A200 200 0 0 0 341.42, 341.42 Z" class="piece piece1"/>
+            <path d="M200 200 L341.42, 341.42 A200 200 0 0 0 400 200 Z" class="piece piece2"/>
+            <path d="M200 200 L400 200 A200 200 0 0 0 341.42 58.58 Z" class="piece piece3"></path>
+            <path d="M200 200 L341.42 58.58 A200 200 0 0 0 200 0 Z" class="piece piece4"></path>
+            <path d="M200 200 L200 0 A200 200 0 0 0 58.58 58.58 Z" class="piece piece5"></path>
+            <path d="M200 200 L58.58 58.58 A200 200 0 0 0 0 200 Z"  class="piece piece6"></path>
+            <path d="M200 200 L0 200 A200 200 0 0 0 58.58 341.42 Z" class="piece piece7"></path>
+            <path d="M200 200 L58.58 341.42 A200 200 0 0 0 200 400 Z" class="piece piece8"></path>
+            <circle cx="170" cy="270" r="20" class="salami8"/>
+            <circle cx="160" cy="320" r="20" class="salami8"/>
+            <circle cx="110" cy="330" r="20" class="salami8"/>
+            <circle cx="80" cy="270" r="20" class="salami7"/>
+            <circle cx="120" cy="230" r="20" class="salami7"/>
+            <circle cx="40" cy="240" r="20" class="salami7"/>
+            <circle cx="80" cy="120" r="20" class="salami6"/>
+            <circle cx="120" cy="170" r="20" class="salami6"/>
+            <circle cx="40" cy="140" r="20" class="salami6"/>
+            <circle cx="150" cy="100" r="20" class="salami5"/>
+            <circle cx="120" cy="50" r="20" class="salami5"/>
+            <circle cx="170" cy="50" r="20" class="salami5"/>
+            <circle cx="250" cy="110" r="20" class="salami4"/>
+            <circle cx="230" cy="70" r="20" class="salami4"/>
+            <circle cx="290" cy="50" r="20" class="salami4"/>
+            <circle cx="340" cy="100" r="20" class="salami3"/>
+            <circle cx="320" cy="150" r="20" class="salami3"/>
+            <circle cx="280" cy="170" r="20" class="salami3"/>
+            <circle cx="340" cy="220" r="20" class="salami2"/>
+            <circle cx="300" cy="250" r="20" class="salami2"/>
+            <circle cx="360" cy="260" r="20" class="salami2"/>
+            <circle cx="250" cy="300" r="20" class="salami1"/>
+            <circle cx="230" cy="370" r="20" class="salami1"/>
+            <circle cx="225" cy="270" r="20" class="salami1"/>
+
+            <image href="{% static 'images/logo.jpg' %}" x="50" y="0" width="300" height="300" id="logo"/>
+            
+            <path d="M200 0 A 100 100 0 0 0 200 100
+            A 100 100 0 0 1 200 200" class="steam"></path>
+            <path d="M150 0 A 100 100 0 0 0 150 100
+            A 100 100 0 0 1 150 200" class="steam"></path>
+            <path d="M250 0 A 100 100 0 0 0 250 100
+            A 100 100 0 0 1 250 200" class="steam"></path>
+        </svg>
+    </div>
 {% endblock %}

@@ -4,12 +4,19 @@
     {{new.title}}
 {% endblock %}
 
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/news_detail.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>{{new.title}}</h1>
 {% endblock %}
 
 {% block info %}
-    {{new.content}}<hr>
-    <img src="{{ new.image.url }}" height="200" width="200"><br><hr>
-    Опубликовано: {{new.publication_date}}
+<div class="news-container">
+    <img src="{{ new.image.url }}" class="news-image" width="150">
+    <p class="publicated_date">Опубликовано: {{new.publication_date}}</p>
+    <p class="content">{{new.content}}</p>
+</div>
 {% endblock %}

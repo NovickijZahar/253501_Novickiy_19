@@ -5,16 +5,25 @@
     Новости
 {% endblock %}
 
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/news.css' %}" type="text/css">
+{% endblock %}
+
 {% block body %}
     <h1>Новости</h1>
 {% endblock %}
 
 {% block info %}
-    {% for n in ns %}
-        <img src="{{ n.image.url }}" height="250" width="300">
-        <b>{{n.title}}</b><br>
-        Опубликовано: {{n.publication_date}}<br>
-        <a href="{% url 'news_detail' n.id %}">Подробнее</a><br>
-        <hr>
-    {% endfor %}
+    <div class="news">
+        {% for n in ns %}
+        <div class="news-item">
+            <img src="{{ n.image.url }}" height="250" width="300">
+            <h2>{{n.title}}</h2>
+            <p class="content">{{n.content}}</p>
+            <p>Опубликовано: {{n.publication_date}}</p>
+            <a href="{% url 'news_detail' n.id %}" class="read-more">Подробнее</a>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock %}

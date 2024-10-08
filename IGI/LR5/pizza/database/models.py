@@ -139,7 +139,7 @@ class Reviews(models.Model):
 class Coupons(models.Model):
     discount = models.FloatField('Скидка', validators=[MinValueValidator(0), MaxValueValidator(1)])
     start_date = models.DateField('Дата начала', default='2024-12-12')
-    end_date = models.DateField('Дата конца', default='2024-12-12')
+    end_date = models.DateField('Дата конца', default='2024-12-12', null=True, blank=True)
     coupon = models.CharField('Значение', max_length=10, default='AAAAAAAAAA')
 
     def __str__(self) -> str:

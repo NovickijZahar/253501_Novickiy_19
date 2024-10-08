@@ -1,0 +1,61 @@
+.container{
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 50px
+}
+
+.card{
+    border: thick double red;
+    text-align: center;
+}
+
+figure>img{
+    background-color: burlywood;
+}
+
+.container a{
+    transition-duration: 0.5s;
+}
+
+.container a:hover{
+    transform: scale(1.1, 1.1);
+    transition-duration: 0.5s;
+}
+
+
+button{
+    margin: 10px;
+    background-color:chocolate;
+    border-radius: 5%;
+    padding: 10px;
+}
+
+
+
+select {
+    font-size: larger;
+    padding: 8px 12px;
+    border: 1px solid #fca003;
+    border-radius: 4px;
+    background-color: #ffdd00;
+    color: #333; 
+    appearance: none; 
+}
+
+select:hover {
+    border-color: #999; 
+    box-shadow: 3px 3px 5px orange; 
+}
+
+select:focus {
+    outline: none; 
+    box-shadow: 3px 3px 5px orange; 
+}
+
+option{
+    font-size: larger;
+}
