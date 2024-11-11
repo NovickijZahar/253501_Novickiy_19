@@ -29,8 +29,8 @@
     </form>
         <div class="container">
         {% for piz in pizzas %}
-        <a href="{% url 'pizza_detail' piz.id %}">
-            <div class="card">
+        <div class="card pizza-item">
+            <a href="{% url 'pizza_detail' piz.id %}">
                 <figure>
                     <img src="{{ piz.image.url }}" height="200" width="200"><br>
                     <figcaption>
@@ -38,18 +38,19 @@
                         {{piz.price}} BYN<br>
                     </figcaption>
                 </figure>
-                    
                 <form method="post" action="{% url 'add_to_cart' %}">
                     {% csrf_token %}
                     <input type="hidden" name="pizza_id" value="{{ piz.id }}">
-                    <input type="numbrt" hidden name="count" value="1">
+                    <input type="number" hidden name="count" value="1">
                     <button type="submit">Добавить в корзину</button>
                 </form>
-            </div>
-        </a>
-            {% endfor %}
+            </a>
         </div>
+        {% endfor %}
+    </div>
+    <div class="pagination" id="pagination"></div>
     {% else %}
             <h3>Нет пицц</h3>
     {% endif %}
+    <script src="{% static 'js/pizzas.js' %}"></script>
 {% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+    Проверка возраста
+{% endblock %}
+
+{% block styles %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <h1>Проверка возраста</h1>
+{% endblock %}
+
+{% block info %}
+    <div class="container">
+        <fieldset>
+            <legend>Проверка</legend>
+            <div class="item">
+                <div>
+                    <label for="birth_date">Введите дату рождения</label>
+                </div>
+                <div>
+                    <input id="birth_date" type="date">
+                </div>
+                <div>
+                    <input type="button" id="button" value="Проверить" onclick="checkAge()">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    {% load static %}
+    <script src="{% static 'js/get_age.js' %}"></script>
+{% endblock %}

@@ -14,5 +14,8 @@ urlpatterns = [
     path('api1', views.api1, name='api1'),
     path('api2', views.api2, name='api2'),
     re_path(r'^faq', views.faq, name='faq'),
-    path('about', views.about, name='about')
+    path('about', views.about, name='about'),
+    path('get_age', views.get_age, name='get_age'),
+    path('chart', views.chart, name='chart'),
+    path('readers', views.readers, name='readers'),
 ]

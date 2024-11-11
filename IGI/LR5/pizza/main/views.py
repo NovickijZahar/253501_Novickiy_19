@@ -76,6 +76,7 @@ def register(request):
 
 def contacts(request):
     cons = Contacts.objects.all()
+    cons = list(enumerate(list(cons), 1))
 
     logging.basicConfig(level=logging.INFO, filename="py_log.log",filemode="w",
                     format="%(asctime)s %(levelname)s %(message)s")
@@ -242,3 +243,15 @@ def faq(request):
 def about(request):
     director = Contacts.objects.get(work='Директор')
     return render(request, 'main/about.html', {"director": director})
+
+
+def get_age(request):
+    return render(request, 'main/get_age.html')
+
+
+def chart(request):
+    return render(request, 'main/chart.html')
+
+
+def readers(request):
+    return render(request, 'main/readers.html')

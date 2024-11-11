@@ -8,6 +8,8 @@
 {% block styles %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/slider.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/loader.css' %}" type="text/css">
 {% endblock %}
 
 {% block body %}
@@ -16,6 +18,7 @@
 
 {% block info %}
     <h2>Добро пожаловать на PizzaHub</h2>
+    <span id="countdown" style="font-size: x-large;"></span>
     <p class="def"><dfn title="PizzaHub">PizzaHub</dfn> &mdash; это не просто пиццерия, 
         это место, где каждый кусочек пиццы становится настоящим кулинарным произведением искусства.</p>
     Сегодня: <time datetime="{{current_date.year}}-{{current_date.month}}-{{current_date.day}}">
@@ -48,19 +51,19 @@
     </section>
     <section id="partners">
         <h3>Наши партнеры</h3>
-        <div class="container">
-            {% for partner in partners %}
-            <div class="item">
-                <a href="{{ partner.url }}" target="_blank">
-                    <figure>
-                        <img src="{{ partner.logo.url }}" height="300" width="300" alt="Логотип партнера">
-                        <figcaption>
-                            <p>{{partner.name}}</p>
-                        </figcaption>
-                    </figure>
-                </a>
+        <div class="slider">
+            <div class="slides">
+                {% for partner in partners %}
+                <div class="slide">
+                    <a href="{{ partner.url }}" target="_blank"><img src="{{ partner.logo.url }}" alt="Логотип партрнера"></a>
+                    <div class="caption">{{partner.name}}</div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+            <div class="nav left">&lt;</div>
+            <div class="nav right">&gt;</div>
+            <div class="pagination"></div>
+            <div class="slide-number"></div>
         </div>
     </section>
     <section id="last_news">
@@ -122,4 +125,7 @@
             A 100 100 0 0 1 250 200" class="steam"></path>
         </svg>
     </div>
+
+    <script src="{% static 'js/remain_time.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
 {% endblock %}

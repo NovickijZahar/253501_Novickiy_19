@@ -15,6 +15,25 @@
 {% endblock %}
 
 {% block info %}
+    <label>
+        <input type="checkbox" id="toggleControls"> Показать элементы управления
+    </label>
+
+    <div id="controls" class="controls" style="display: none;">
+        <label for="fontSize">Размер шрифта:</label>
+        <select id="fontSize">
+            <option value="16px">Обычный</option>
+            <option value="20px">Крупный</option>
+            <option value="24px">Очень крупный</option>
+        </select>
+
+        <label for="textColor">Цвет текста:</label>
+        <input type="color" id="textColor" value="#000000">
+
+        <label for="bgColor">Цвет фона:</label>
+        <input type="color" id="bgColor" value="#ffffff">
+    </div>
+
     <div class="news">
         {% for n in ns %}
         <div class="news-item">
@@ -26,4 +45,5 @@
         </div>
         {% endfor %}
     </div>
+    <script src="{% static 'js/styles.js' %}"></script>
 {% endblock %}
