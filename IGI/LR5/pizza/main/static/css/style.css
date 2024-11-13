@@ -220,3 +220,7 @@ button:hover{
     background-color: orange;
     color: white;
 }
+
+#battery{
+    font-size: 30px;
+}

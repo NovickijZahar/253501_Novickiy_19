@@ -8,15 +8,11 @@
     gap: 40px
 }
 
-.card{
+.parallax{
     height: 400px;
     border: thick double red;
     text-align: center;
     max-width: 280px;
-}
-
-figure>img{
-    background-color: burlywood;
 }
 
 
@@ -54,11 +50,16 @@ option{
 }
 
 .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-    }
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 .pagination button {
     margin: 0 5px;
 }
 
+  
+.parallax__layer {
+    transition: transform 0.3s linear;
+}

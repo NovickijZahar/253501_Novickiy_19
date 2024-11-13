@@ -11,12 +11,12 @@ class Slider {
         this.currentIndex = 0;
         this.totalSlides = this.slideElements.length;
         this.settings = {
-            loop: options.loop || false,
-            navs: options.navs || true,
-            pags: options.pags || true,
-            auto: options.auto || false,
-            stopMouseHover: options.stopMouseHover || false,
-            delay: options.delay || 3
+            loop: options.loop,
+            navs: options.navs,
+            pags: options.pags,
+            auto: options.auto,
+            stopMouseHover: options.stopMouseHover,
+            delay: options.delay
         };
         
         this.init();
@@ -45,17 +45,14 @@ class Slider {
         });
 
         this.delayInput = document.getElementById('delay');
-        this.delayInput.addEventListener('change', () => {
-            this.settings.delay = parseInt(this.delayInput.value, 10);
-            if (this.settings.auto) {
-                this.restartAutoSlide();
-            }
-        });
     }
 
     createPagination() {
-        if (!this.settings.pags) return;
-
+        if (!this.settings.pags) 
+        {
+            this.pagination.style.display = 'none';
+            return;
+        }
         this.pagination.innerHTML = '';
         for (let i = 0; i < this.totalSlides; i++) {
             const span = document.createElement('span');
@@ -94,12 +91,22 @@ class Slider {
     }
 
     nextSlide() {
-        this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+        if (this.settings.loop){
+            this.currentIndex = (this.currentIndex + 1) % this.totalSlides;
+        }
+        else{
+            this.currentIndex = Math.min(this.currentIndex+1, this.totalSlides - 1);
+        }
         this.updateSlide();
     }
 
     prevSlide() {
-        this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+        if (this.settings.loop){
+            this.currentIndex = (this.currentIndex - 1 + this.totalSlides) % this.totalSlides;
+        }
+        else{
+            this.currentIndex = Math.max(this.currentIndex-1, 0);
+        }
         this.updateSlide();
     }
 
@@ -135,6 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
         pags: true,
         auto: true,
         stopMouseHover: true,
-        delay: 3
+        delay: 1
     });
 });

@@ -15,6 +15,12 @@
 {% endblock %}
 
 {% block info %}
+    <div id="top">
+        <h3 id="text">О нас</h2>
+        <img src="{% static 'images/leftbg.png' %}" id="mountain_left" />
+        <img src="{% static 'images/rightbg.png'%}" id="mountain_right" />
+    </div>
+    
     <h2>Видео</h2>
     <iframe width="700" height="500" src="https://www.youtube.com/embed/wX8foM1z7S0?autoplay=1&mute=1&" title="Making a pizza - reels" frameborder="0" allowfullscreen></iframe>
     
@@ -116,4 +122,5 @@
         <h2>Просто хорошая музыка</h2>
         <audio src="{% static 'audios/Memory Reboot.mp3' %}" controls>Просто хорошая музыка</audio>
     </section>
+    <script src="{% static 'js/about.js' %}"></script>
 {% endblock %}

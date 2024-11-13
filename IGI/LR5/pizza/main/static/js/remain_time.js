@@ -4,7 +4,7 @@ function startCountdown() {
 
     if (!endTime) {
         let now = new Date();
-        endTime = new Date(now.getTime() + 60 * 60 * 1000).getTime();
+        endTime = new Date(now.getTime() + 3600 * 1000).getTime();
         sessionStorage.setItem('endTime', endTime);
     }
 
@@ -15,7 +15,7 @@ function startCountdown() {
         if (distance <= 0) {
             clearInterval(countdownInterval);
             sessionStorage.removeItem('endTime');
-            countdownElement.innerHTML = 'Countdown finished';
+            startCountdown();
         } else {
             let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -31,6 +31,5 @@ function startCountdown() {
     setTime();
     let countdownInterval = setInterval(setTime, 1000);
 };
-
 
 startCountdown();

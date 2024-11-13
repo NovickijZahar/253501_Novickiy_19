@@ -234,3 +234,20 @@ iframe{
     box-shadow: 10px 10px 10px orange;
     border: 3px solid red;
 }
+
+#pizza_animations{
+    z-index: 1000;
+    width: 1200px;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    border: black solid thick;
+}
+
+
+.pizza {
+    user-select: none;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+}
