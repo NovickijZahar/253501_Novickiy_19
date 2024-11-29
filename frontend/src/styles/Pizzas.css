@@ -1,0 +1,65 @@
+.product-card {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    width: 250px;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: 250px;
+}
+
+.cards-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px
+}
+
+.pagination {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page {
+    display: flex;
+    align-items: center; 
+}
+
+.pagButton {
+    width: 30px;
+    background-color: rgb(30, 30, 211);
+    color: white;
+}
+
+.pagButton:disabled {
+    cursor: default;
+    background-color: #ccc;
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin: 20px 0;
+}
+
+.sort-controls label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.sort-controls select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+    font-size: 14px;
+}
