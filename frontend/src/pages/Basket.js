@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { clearBasket, getBasket, minusPizza, plusPizza, removePizza } from '../http/basketApi';
 
-const Basket = () => {
+function Basket() {
     const [basket, setBasket] = useState([]);
     const [totalSum, setTotalSum] = useState(0);
 

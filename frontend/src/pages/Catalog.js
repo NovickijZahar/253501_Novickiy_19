@@ -1,14 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 import { Context } from "..";
-import { useNavigate } from "react-router-dom";
 import '../styles/Pizzas.css';
-import { PIZZA_ROUTE } from "../utils/consts";
 import { getAllPizzas } from "../http/pizzaApi";
 import { observer } from "mobx-react-lite";
-import { plusPizza } from "../http/basketApi";
+import Pizzas from "../components/Pizzas";
 
 const Catalog = observer(() => {
-  const navigate = useNavigate();
   const { pizza } = useContext(Context);
   const PRODUCTS_PER_PAGE = 3;
 
@@ -94,26 +91,7 @@ const Catalog = observer(() => {
         />
       </div>
 
-      <div className="cards-container">
-        {currentPizzas.map((pizza) => (
-          <div key={pizza._id} className="product-card">
-            <div>
-              <img
-                src={pizza.imageUrl}
-                alt='Картинка'
-                onClick={() => navigate(PIZZA_ROUTE + '/' + pizza._id)}
-              />
-            </div>
-            <div>{pizza.name}</div>
-            <div>{pizza.price} BYN</div>
-            <div>
-              <button onClick={async () => { await plusPizza(pizza._id); alert('Пицца добавлена в корзину'); }}>
-                Добавить в корзину
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Pizzas pizzas={currentPizzas} />
       
       <div className="pagination">
         <button className="pagButton" onClick={handlePrevPage} disabled={currentPage === 1}>
