@@ -50,7 +50,16 @@ const Pizza = observer(() => {
         min="1"
         max="10"
       />
-      <button onClick={async() => {await plusPizza(pizza._id, count); alert('Пицца добавлена в корзину')}}>Добавить в корзину</button>
+      <button onClick={async() => 
+      {
+        try{
+
+          await plusPizza(id); alert('Пицца добавлена в корзину'); 
+        }
+        catch(e){
+          alert('Необходимо авторизоваться');
+        }
+      }}>Добавить в корзину</button>
     </div>
   );
 });

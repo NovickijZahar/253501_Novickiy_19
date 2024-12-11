@@ -19,7 +19,15 @@ const Pizzas = (props) => {
             <div>{pizza.name}</div>
             <div>{pizza.price} BYN</div>
             <div>
-              <button onClick={async () => { await plusPizza(pizza._id); alert('Пицца добавлена в корзину'); }}>
+              <button onClick={async () => { 
+                try{
+
+                  await plusPizza(pizza._id); alert('Пицца добавлена в корзину'); 
+                }
+                catch(e){
+                  alert('Необходимо авторизоваться');
+                }
+                }}>
                 Добавить в корзину
               </button>
             </div>
